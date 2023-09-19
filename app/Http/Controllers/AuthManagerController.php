@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Http\RedirectResponse;
+
+use function Ramsey\Uuid\v1;
 
 class AuthManagerController extends Controller
 {
@@ -16,18 +19,17 @@ class AuthManagerController extends Controller
     {
         return view('auth.login');
     }
-    public function loginPost(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
 
-        $credentials = $request->only('email', 'password');
+    function authenticate(Request $req)
+    {
+        //password is hashed
+        $credentials = $req->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')->with('success', 'You have been logged in');
+            $req->session()->regenerate();
+            return redirect()->intended('/admin/dashboard');
+        } else {
+            return 'Username or password not matched';
         }
-        return redirect()->route('login')->with('error', 'Invalid credentials');
     }
     public function register()
     {
@@ -47,14 +49,14 @@ class AuthManagerController extends Controller
         $user = new User([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => $data['password'],
         ]);
         $user->save();
         Auth::login($user);
         if (!$user) {
             return redirect()->route('register')->with('error', 'Something went wrong');
         }
-        return redirect()->route('welcome')->with('success', 'You have been registered');
+        return redirect()->route('dashboard')->with('success', 'You have been registered');
     }
     public function forgot()
     {
@@ -63,7 +65,6 @@ class AuthManagerController extends Controller
 
     public function logout()
     {
-        Session::flush();
         Auth::logout();
         return redirect()->route('login')->with('success', 'You have been logged out');
     }

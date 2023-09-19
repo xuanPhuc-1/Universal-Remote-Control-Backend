@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Device;
+use App\Models\Location;
+use App\Models\Hub;
+use League\Flysystem\Adapter\Local;
 
 class User extends Authenticatable
 {
@@ -43,8 +45,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function devices()
+    public function locations()
     {
-        return $this->hasMany(Device::class);
+        return $this->belongsToMany(Location::class, 'user_location', 'user_id', 'location_id');
+    }
+
+    public function hubs()
+    {
+        return $this->belongsToMany(Hub::class, 'user_hub', 'user_id', 'hub_id');
     }
 }
