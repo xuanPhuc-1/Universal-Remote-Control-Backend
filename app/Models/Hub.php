@@ -21,7 +21,7 @@ class Hub extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'user_hub', 'hub_id', 'user_id');
     }
 
     public function location()

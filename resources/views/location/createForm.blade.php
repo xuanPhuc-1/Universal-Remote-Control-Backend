@@ -11,12 +11,12 @@
 
             <div class="form-group">
                 <label for="hub_name">Hub:</label>
-                <td>{{ $hub->name }}</td>
+                <td>{{ $hub }}</td>
             </div>
 
             <div class="form-group">
                 <label for="name">Location in your house</label>
-                <input type="text" class="form-control" name="name"placeholder="Enter Location of device">
+                <input type="text" class="form-control" name="name" placeholder="Enter Location of device">
             </div>
 
             <button type="submit" class="btn btn-primary">Next</button>
