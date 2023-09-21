@@ -24,9 +24,34 @@
     font-weight: 500;
 }
 main {
-    padding-top: 90px;
+    padding-top: 50px;
+    width: 70%;
+    height: 70%;
+    margin-left: 200px;
+    margin-right: 0px;
 }
 
 main .card {
-    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+img {
+    border-radius: 8px;
+    width: 50%;
+    height: 50%;
+}
+
+.card-text {
+    max-width: 80%;
+}
+
+.title_table {
+    text-align: center;
+    font-weight: bold;
+    font-size: 60px;
 }

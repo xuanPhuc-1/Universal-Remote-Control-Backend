@@ -3,7 +3,10 @@
 @section('main-content')
     <div class="container">
         <div class="container">
-            <h1>This is for Your home</h1>
+            @php
+                $user = Auth::user();
+            @endphp
+            <h1>Glad to see you, {{ $user->name }}!</h1>
         </div>
     </div>
 @endsection

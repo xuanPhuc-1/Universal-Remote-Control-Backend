@@ -16,16 +16,10 @@ class Hub extends Model
         "MAC_address",
         "name",
         "user_id",
-        "location_id"
     ];
 
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_hub', 'hub_id', 'user_id');
-    }
-
-    public function location()
-    {
-        return $this->hasOne(Location::class);
     }
 }

@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'providers' => [
+        // ...
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class
+    ],
+
+    'aliases' => [
+        // ...
+        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class
+    ],
+
 
     /*
     |--------------------------------------------------------------------------
