@@ -36,11 +36,17 @@ Route::namespace('Api')->group(function () {
     Route::get('user', [AuthController::class, 'user']);
 });
 
-// // New group for auth middleware
-// Route::group(['middleware' => 'jwtAuth'], function () {
-//     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-//     Route::get('/management', [AdminController::class, 'management'])->name('management');
-//     Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
-//     Route::resource('locations', LocationController::class);
-//     Route::resource('hubs', HubController::class);
-// });
+// New group for auth middleware
+Route::group(['middleware' => 'jwtAuth'], function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/management', [AdminController::class, 'management'])->name('management');
+    Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
+
+    //locations
+    Route::post('/locations/delete', [LocationController::class, 'delete'])->name('locations.delete');
+    Route::post('/locations/update', [LocationController::class, 'update'])->name('locations.update');
+    Route::post('/locations/create', [LocationController::class, 'create'])->name('locations.create');
+    Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
+    Route::get('/locations/mylocations', [LocationController::class, 'myLocations'])->name('locations.mylocations');
+    //Route::resource('hubs', HubController::class);
+});

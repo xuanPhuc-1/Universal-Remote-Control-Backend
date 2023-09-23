@@ -19,8 +19,6 @@ class HubController extends Controller
     {
         //select all hubs
         $hubs = Hub::all();
-
-
         return view('hub.chooseDevice')->with('hubs', $hubs);
     }
 
@@ -34,14 +32,12 @@ class HubController extends Controller
         $user = User::find($user_id);
         //save hub_id and user_id in user_hub table
         $hub->users()->attach($user_id);
-        return view('location.createForm')->with(['hub' => $request->input('hubs'), 'user' => $user]);
+        //return view('location.createForm')->with(['hub' => $request->input('hubs'), 'user' => $user]);
+        return response()->json([
+            'success' => true,
+            'message' => 'Hub added successfully, create link between hub and user'
+        ]);
     }
-
-    public function show($id)
-    {
-        print("Hub show");
-    }
-
     public function update(Request $request)
     {
     }

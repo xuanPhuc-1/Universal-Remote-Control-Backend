@@ -26,9 +26,4 @@ class Location extends Model
     {
         return $this->belongsToMany(Hub::class, 'hub_location', 'location_id', 'hub_id');
     }
-
-    public function countHubs()
-    {
-        return $this->hubs()->count();
-    }
 }

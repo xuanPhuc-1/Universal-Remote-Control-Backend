@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Hub;
 use League\Flysystem\Adapter\Local;
+use Illuminate\Support\Facades\Storage;
 
 class LocationController extends Controller
 {
@@ -17,14 +18,7 @@ class LocationController extends Controller
         print("Location index");
     }
 
-    public function create()
-    {
-
-
-        //return view('location.createForm');
-    }
-
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $request->all();
         //check if location name is unique
@@ -51,11 +45,54 @@ class LocationController extends Controller
             $hub->locations()->attach($location->id);
             $location->users()->attach(Auth::user()->id);
         }
-        return redirect()->route('management');
+        //return redirect()->route('management');
+        return response()->json([
+            'success' => true,
+            'message' => 'location created'
+        ]);
     }
 
-    public function show($id)
+    public function update(Request $request)
     {
-        print("Location show");
+        $location = Location::find($request->input('location_id'));
+        if (Auth::user()->id != $location->user_id) {
+            return response()->json([
+                'success' => false,
+                'message' => 'unauthorized access'
+            ]);
+        }
+        $location->name = $request->name;
+        $location->update();
+        $hub = Hub::whereHas('users', function ($query) {
+            $query->where('user_id', Auth::user()->id);
+        })->orderBy('id', 'desc')->first();
+        $hub->locations()->attach($location->id);
+        $location->users()->attach(Auth::user()->id);
+        return response()->json([
+            'success' => true,
+            'message' => 'location edited'
+        ]);
+    }
+
+    public function delete(Request $request)
+    {
+        $location = Location::find($request->id);
+        // check if user is editing his own post
+        if (Auth::user()->id != $location->user_id) {
+            return response()->json([
+                'success' => false,
+                'message' => 'unauthorized access'
+            ]);
+        }
+
+        //check if post has photo to delete
+        if ($location->photo != '') {
+            Storage::delete('public/posts/' . $location->photo);
+        }
+        $location->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'location deleted'
+        ]);
     }
 }

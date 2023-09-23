@@ -2,7 +2,7 @@
 @section('title', 'Create Location')
 @section('main-content')
     <div class="container">
-        <form method="POST" action="{{ route('locations.store') }}">
+        <form method="POST" action="{{ route('locations.create') }}">
             @csrf
             <div class="form-group">
                 <label for="user_name">Owner:</label>
