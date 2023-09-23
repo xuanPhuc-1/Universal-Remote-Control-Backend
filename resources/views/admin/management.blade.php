@@ -17,7 +17,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $location->name }}</h5>
                             <p class="card-text">
-                            <p class="hub-quantity">Number of Hubs:</p>
+                            <p class="hub-quantity">Number of Hubs: {{ $location->hubs_count }}</p>
                             <p class="device-quantity">HI</p>
                             </p>
                         </div>

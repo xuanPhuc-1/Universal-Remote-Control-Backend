@@ -22,4 +22,9 @@ class Hub extends Model
     {
         return $this->belongsToMany(User::class, 'user_hub', 'hub_id', 'user_id');
     }
+
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class, 'hub_location', 'hub_id', 'location_id');
+    }
 }

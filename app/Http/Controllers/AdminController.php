@@ -8,6 +8,7 @@ use App\Models\Location;
 use App\Models\Hub;
 use Eloquent;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 
 class AdminController extends Controller
 {
@@ -30,12 +31,12 @@ class AdminController extends Controller
             $query->where('user_id', $user_id);
         })->get();
 
-        //get hubs of user by searching user_id in user_hub table and the same for locations
         $hubs = Hub::whereHas('users', function ($query) use ($user_id) {
             $query->where('user_id', $user_id);
         })->get();
 
-        //use Eloquent and DB to get the count of hubs in a same location
+        //use pivot table to get number of hubs in a location
+        //dd($locations);
 
         return view('admin.management')->with(['locations' => $locations]);
     }

@@ -16,6 +16,10 @@
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input type="password" name="password" class="form-control">
             </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+                <input type="password" name="password_confirmation" class="form-control">
+            </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" name="checkbox" class="form-check-input">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>

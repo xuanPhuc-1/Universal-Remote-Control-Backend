@@ -12,7 +12,9 @@
         "kris/laravel-form-builder": "^1.52",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "php-open-source-saver/jwt-auth": "^2.1",
+        "tymon/jwt-auth": "1.*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

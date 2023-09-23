@@ -15,7 +15,6 @@ class Location extends Model
     protected $fillable = [
         'name',
         'user_id',
-        'hub_id',
     ];
 
     public function users()
@@ -25,10 +24,10 @@ class Location extends Model
 
     public function hubs()
     {
-        return $this->hasMany(Hub::class, 'id');
+        return $this->belongsToMany(Hub::class, 'hub_location', 'location_id', 'hub_id');
     }
 
-    public function getHubCountAttribute()
+    public function countHubs()
     {
         return $this->hubs()->count();
     }

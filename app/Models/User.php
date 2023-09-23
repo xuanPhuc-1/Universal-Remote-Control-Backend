@@ -10,8 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Location;
 use App\Models\Hub;
 use League\Flysystem\Adapter\Local;
+use  Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -53,5 +54,15 @@ class User extends Authenticatable
     public function hubs()
     {
         return $this->belongsToMany(Hub::class, 'user_hub', 'user_id', 'hub_id');
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims(): array
+    {
+        return [];
     }
 }

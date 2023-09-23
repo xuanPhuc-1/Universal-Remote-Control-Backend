@@ -2,7 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\HubController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,3 +22,25 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('/data', App\Http\Controllers\DataController::class);
+
+Route::post('login', [AuthController::class, 'login']);
+
+Route::namespace('Api')->group(function () {
+
+    Route::post('login', [AuthController::class, 'login'])->name('login.post');
+    Route::get('login', [AuthController::class, 'loginGet'])->name('login.get');
+    Route::post('signup', [AuthController::class, 'register'])->name('register.post');
+    Route::get('signup', [AuthController::class, 'registerGet'])->name('register.get');
+
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::get('user', [AuthController::class, 'user']);
+});
+
+// // New group for auth middleware
+// Route::group(['middleware' => 'jwtAuth'], function () {
+//     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+//     Route::get('/management', [AdminController::class, 'management'])->name('management');
+//     Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
+//     Route::resource('locations', LocationController::class);
+//     Route::resource('hubs', HubController::class);
+// });
