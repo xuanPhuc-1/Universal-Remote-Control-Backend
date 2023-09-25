@@ -49,4 +49,7 @@ Route::group(['middleware' => 'jwtAuth'], function () {
     Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
     Route::get('/locations/mylocations', [LocationController::class, 'myLocations'])->name('locations.mylocations');
     //Route::resource('hubs', HubController::class);
+
+    //User 
+    Route::get('save_user_info', [AuthController::class, 'saveUserInfo'])->name('save_info');
 });
