@@ -77,7 +77,6 @@ class AuthController extends Controller
     {
         $user = User::find(Auth::user()->id);
         $user->name = $request->name;
-        $user->lastname = $request->lastname;
         $photo = '';
         //check if user provided photo
         if ($request->photo != '') {
@@ -92,6 +91,7 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
+            'name' => $user->name,
             'photo' => $photo
         ]);
     }

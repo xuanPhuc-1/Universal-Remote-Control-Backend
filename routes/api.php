@@ -4,8 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\HubController;
+use App\Http\Controllers\Api\LocationController;
+use App\Http\Controllers\Api\HubController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,7 +32,7 @@ Route::namespace('Api')->group(function () {
     Route::post('signup', [AuthController::class, 'register'])->name('register.post');
     Route::get('signup', [AuthController::class, 'registerGet'])->name('register.get');
 
-    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('user', [AuthController::class, 'user']);
 });
 
@@ -43,13 +43,16 @@ Route::group(['middleware' => 'jwtAuth'], function () {
     Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
 
     //locations
-    Route::post('/locations/delete', [LocationController::class, 'delete'])->name('locations.delete');
-    Route::post('/locations/update', [LocationController::class, 'update'])->name('locations.update');
+    // Route::post('/locations/delete', [LocationController::class, 'delete'])->name('locations.delete');
+    // Route::post('/locations/update', [LocationController::class, 'update'])->name('locations.update');
     Route::post('/locations/create', [LocationController::class, 'create'])->name('locations.create');
     Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
-    Route::get('/locations/mylocations', [LocationController::class, 'myLocations'])->name('locations.mylocations');
+    // Route::get('/locations/mylocations', [LocationController::class, 'myLocations'])->name('locations.mylocations');
     //Route::resource('hubs', HubController::class);
 
     //User 
-    Route::get('save_user_info', [AuthController::class, 'saveUserInfo'])->name('save_info');
+    Route::post('save_user_info', [AuthController::class, 'saveUserInfo'])->name('save_info');
+
+    //Hub
+    Route::post('/hubs/pick', [HubController::class, 'pick'])->name('hubs.pick');
 });
