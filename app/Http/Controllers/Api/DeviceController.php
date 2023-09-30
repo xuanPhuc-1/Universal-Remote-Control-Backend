@@ -15,10 +15,16 @@ class DeviceController extends Controller
     //
     public function index()
     {
-        $devices = Device::all();
+        $hub = Hub::whereHas('users', function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        })->first();
+        //select all device categories have hub_id = $hub->id
+        $device_category = $hub->deviceCategories;
+        //return all devices have device_category_id = $device_category->id
+        $devices = $device_category->devices;
         return response()->json([
             'success' => true,
-            'message' => 'List Semua Device',
+            'message' => 'List Devices',
             'data' => $devices
         ], 200);
     }

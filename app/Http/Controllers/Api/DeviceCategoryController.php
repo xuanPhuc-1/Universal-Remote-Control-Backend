@@ -15,11 +15,18 @@ class DeviceCategoryController extends Controller
     //
     public function index()
     {
-        $device_categories = DeviceCategory::all();
+        //get all hub of user
+        $hub = Hub::whereHas('users', function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        })->first();
+        //select all device categories have hub_id = $hub->id
+        $hub = $hub->deviceCategories;
+
+
         return response()->json([
             'success' => true,
             'message' => 'List Device Categories',
-            'data' => $device_categories
+            'categories' => $hub
         ], 200);
     }
 
@@ -38,6 +45,15 @@ class DeviceCategoryController extends Controller
         }
         $hub = Hub::where('name', $request->hub_name)->first();
         $device_category->hub_id = $hub->id;
+
+        //check if device category name and hub_id is unique
+        if (DeviceCategory::where('name', $request->device_category_name)->where('hub_id', $hub->id)->first()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Device Category Name and Hub ID already exists',
+                'data' => ''
+            ], 404);
+        }
         $device_category->save();
 
         return response()->json([

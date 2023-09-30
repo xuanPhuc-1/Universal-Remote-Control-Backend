@@ -16,6 +16,7 @@ class HubController extends Controller
     public function index()
     {
         print("Hub index");
+        //return all hubs of user
     }
 
     public function create()
@@ -38,11 +39,15 @@ class HubController extends Controller
             ]);
         }
 
-        if (Location::where('name', $request->input('location_name'))->exists()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Location name already exists'
-            ]);
+        //check if location name and user_id is unique
+        if (Location::where('name', $request->input('location_name'))->whereHas('users', function ($query) {
+            $query->where('user_id', Auth::user()->id);
+        })->first()) {
+            $location = Location::where('name', $request->input('location_name'))->whereHas('users', function ($query) {
+                $query->where('user_id', Auth::user()->id);
+            })->first();
+            $hub->locations()->attach($location->id);
+            $location->users()->attach(Auth::user()->id);
         } else {
             $location = new Location();
             $location->name = $request->input('location_name');
