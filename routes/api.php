@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\HubController;
+use App\Http\Controllers\Api\DeviceController;
+use App\Http\Controllers\Api\DeviceCategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -55,4 +57,10 @@ Route::group(['middleware' => 'jwtAuth'], function () {
 
     //Hub
     Route::post('/hubs/pick', [HubController::class, 'pick'])->name('hubs.pick');
+
+    //Device Category
+    Route::post('/device_categories/create', [DeviceCategoryController::class, 'create'])->name('device_categories.create');
+
+    //Device 
+    Route::post('/devices/create', [DeviceController::class, 'create'])->name('devices.create');
 });
