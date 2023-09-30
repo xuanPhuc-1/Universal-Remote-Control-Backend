@@ -28,8 +28,8 @@ class Hub extends Model
         return $this->belongsToMany(Location::class, 'hub_location', 'hub_id', 'location_id');
     }
 
-    public function devices()
+    public function deviceCategories()
     {
-        return $this->hasMany(Device::class);
+        return $this->hasMany(DeviceCategory::class);
     }
 }
