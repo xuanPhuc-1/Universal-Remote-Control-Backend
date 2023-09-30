@@ -9,7 +9,7 @@
 
 ## Installation
 
-    ```bash
+```bash
     git clone
     compose install
     php artisan key:generate
@@ -17,18 +17,7 @@
     php artisan vendor:publish
     pick provider number of Provider: Tymon\JWTAuth\Providers\LaravelServiceProvider
     php artisan jwt:secret
-
 ```
-
-compose install
-
-php artisan key:generate
-php artisan migrate
-
-php artisan vendor:publish
-pick provider number of Provider: Tymon\JWTAuth\Providers\LaravelServiceProvider
-
-php artisan jwt:secret
 
 ## About Laravel
 
@@ -47,4 +36,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+```
+
 ```
