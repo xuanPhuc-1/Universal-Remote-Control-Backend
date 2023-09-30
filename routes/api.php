@@ -58,6 +58,9 @@ Route::group(['middleware' => 'jwtAuth'], function () {
     //Hub
     Route::post('/hubs/pick', [HubController::class, 'pick'])->name('hubs.pick');
 
+    //Device Category
+    Route::post('/device_categories/create', [DeviceCategoryController::class, 'create'])->name('device_categories.create');
+
     //Device 
     Route::post('/devices/create', [DeviceController::class, 'create'])->name('devices.create');
 });

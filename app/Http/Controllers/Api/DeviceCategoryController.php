@@ -18,7 +18,7 @@ class DeviceCategoryController extends Controller
         $device_categories = DeviceCategory::all();
         return response()->json([
             'success' => true,
-            'message' => 'List Semua Device Category',
+            'message' => 'List Device Categories',
             'data' => $device_categories
         ], 200);
     }

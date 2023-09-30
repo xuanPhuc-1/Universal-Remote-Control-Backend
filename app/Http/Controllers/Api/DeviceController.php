@@ -47,15 +47,14 @@ class DeviceController extends Controller
         $device = new Device();
         $device->name = $request->device_name;
         //find the id of the device category
-        //if the device category is not found, return error
-        if (!DeviceCategory::where('category_name', $request->device_category)->first()) {
+        if (!DeviceCategory::where('name', $request->device_category)->first()) {
             return response()->json([
                 'success' => false,
                 'message' => 'Cannot find device category',
                 'data' => ''
             ], 404);
         }
-        $device_category = DeviceCategory::where('category_name', $request->device_category)->first();
+        $device_category = DeviceCategory::where('name', $request->device_category)->first();
         $device->device_category_id = $device_category->id;
         $device->save();
 
