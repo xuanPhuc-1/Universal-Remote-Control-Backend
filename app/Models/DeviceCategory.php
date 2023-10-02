@@ -11,16 +11,11 @@ class DeviceCategory extends Model
     protected $table = "device_categories";
     protected $fillable = [
         'name',
-        'hub_id',
+        'location_id',
     ];
 
-    public function devices()
+    public function locations()
     {
-        return $this->hasMany(Device::class);
-    }
-
-    public function hubs()
-    {
-        return $this->belongsTo(Hub::class);
+        return $this->belongsToMany(Location::class, 'device_category_location', 'device_category_id', 'location_id');
     }
 }
