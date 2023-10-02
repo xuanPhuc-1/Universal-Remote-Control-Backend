@@ -16,8 +16,6 @@ class CreateDeviceCategoriesTable extends Migration
         Schema::create('device_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger("hub_id");
-            $table->foreign("hub_id")->references("id")->on("hubs")->onDelete("cascade");
             $table->timestamps();
         });
     }
