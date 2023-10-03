@@ -29,6 +29,6 @@ class Location extends Model
 
     public function deviceCategories()
     {
-        return $this->belongsToMany(DeviceCategory::class, 'device_catgory_location', 'location_id', 'device_category_id');
+        return $this->belongsToMany(DeviceCategory::class, 'device_category_location', 'location_id', 'device_category_id');
     }
 }

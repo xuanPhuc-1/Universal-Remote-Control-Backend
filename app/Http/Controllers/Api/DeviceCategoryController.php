@@ -27,6 +27,24 @@ class DeviceCategoryController extends Controller
         ]);
     }
 
+    public function getCommandParameters($id)
+    {
+        //get hub mac address in same location as device category
+        $hub = Hub::whereHas('locations', function ($query) use ($id) {
+            $query->whereHas('deviceCategories', function ($query) use ($id) {
+                $query->where('device_category_id', $id);
+            });
+        })->first();
+        //get all devices in device category
+        $devices = Device::where('device_category_id', $id)->get();
+        //return hub mac address and devices
+        return response()->json([
+            'success' => true,
+            'hub' => $hub,
+            'devices' => $devices
+        ]);
+    }
+
     public function create(Request $request)
     {
         $request->all();
@@ -67,17 +85,46 @@ class DeviceCategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+        //update device category name
+        $deviceCategory = DeviceCategory::find($id);
+        $deviceCategory->name = $request->input('device_category_name');
+        $deviceCategory->save();
+        //return response true to user
+        return response()->json([
+            'success' => true,
+            'message' => 'Device category updated'
+        ]);
     }
 
     public function delete($id)
     {
+        //delete device category
+        $deviceCategory = DeviceCategory::find($id);
+        $deviceCategory->delete();
+        //return response true to user
+        return response()->json([
+            'success' => true,
+            'message' => 'Device category deleted'
+        ]);
     }
 
     public function show($id)
     {
+        //return device category by id
+        $deviceCategory = DeviceCategory::find($id);
+        return response()->json([
+            'success' => true,
+            'data' => $deviceCategory
+        ]);
     }
 
     public function showDevices($id)
     {
+        //return all devices of device category
+        $devices = Device::where('device_category_id', $id)->get();
+        return response()->json([
+            'success' => true,
+            'data' => $devices
+        ]);
     }
 }
