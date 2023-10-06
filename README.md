@@ -17,11 +17,9 @@ php artisan migrate
 php artisan vendor:publish
 pick provider number of Provider: Tymon\JWTAuth\Providers\LaravelServiceProvider
 php artisan jwt:secret
-```
-
 mkdir -p storage/profiles
-
 php artisan storage:link
+```
 
 ## About Laravel
 
