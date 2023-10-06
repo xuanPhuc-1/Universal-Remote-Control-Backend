@@ -5,10 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Data extends Model
+class Sensor extends Model
 {
     use HasFactory;
-    protected $table = 'datas';
-    protected $filladble = ['data'];
+    protected $fillable = [
+        'id',
+        'device_id',
+        'humidity',
+        'temperature'
+    ];
+    protected $table = "sensors";
     public $timestamps = true;
 }
