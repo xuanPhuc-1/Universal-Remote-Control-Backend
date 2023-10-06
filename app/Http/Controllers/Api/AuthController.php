@@ -83,7 +83,7 @@ class AuthController extends Controller
             // user time for photo name to prevent name duplication
             $photo = time() . '.jpg';
             // decode photo string and save to storage/profiles
-            file_put_contents('storage/profiles/' . $photo, base64_decode($request->photo));
+            file_put_contents('/storage/profiles/' . $photo, base64_decode($request->photo));
             $user->photo = $photo;
         }
 

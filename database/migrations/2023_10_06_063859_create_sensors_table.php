@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDataTable extends Migration
+class CreateSensorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('datas', function (Blueprint $table) {
-            $table->increments('id');
-            $table->json('data');
+        Schema::create('sensors', function (Blueprint $table) {
+            $table->increments("id");
+            $table->string("device_id");
+            $table->integer("humidity");
+            $table->integer("temperature");
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('datas');
+        Schema::dropIfExists('sensors');
     }
 }
