@@ -23,9 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/data', App\Http\Controllers\DataController::class);
+//Route::resource('/data', App\Http\Controllers\DataController::class);
 
-Route::post('login', [AuthController::class, 'login']);
+//Route::post('login', [AuthController::class, 'login']);
 
 Route::namespace('Api')->group(function () {
 
@@ -51,16 +51,17 @@ Route::group(['middleware' => 'jwtAuth'], function () {
     //Location
     Route::post('/locations/create', [LocationController::class, 'create'])->name('locations.create');
     Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
+    Route::get('/locations/{id}/get_info', [LocationController::class, 'getInformation'])->name('locations.get_info');
 
     //Hub
     Route::post('/hubs/pick', [HubController::class, 'pick'])->name('hubs.pick');
 
     //Device Category
     Route::post('/device_categories/create', [DeviceCategoryController::class, 'create'])->name('device_categories.create');
-    Route::get('/device_categories', [DeviceCategoryController::class, 'index'])->name('device_categories.index');
-    Route::get('/device_categories/{id}/get_command_parameters', [DeviceCategoryController::class, 'getCommandParameters'])->name('device_categories.get_command_parameters');
+    Route::get('/locations/{id}/device_categories', [DeviceCategoryController::class, 'index'])->name('device_categories.index');
+
 
     //Device 
     Route::post('/devices/create', [DeviceController::class, 'create'])->name('devices.create');
-    Route::get('/devices', [DeviceController::class, 'index'])->name('devices.index');
+    Route::get('/device_categories/{id}/devices', [DeviceController::class, 'index'])->name('device_categories.devices');
 });

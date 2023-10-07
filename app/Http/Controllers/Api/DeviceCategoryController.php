@@ -13,13 +13,11 @@ use App\Models\Device;
 class DeviceCategoryController extends Controller
 {
     //
-    public function index()
+    public function index($id)
     {
-        //return all device categories of user sorted by location
-        $deviceCategories = DeviceCategory::whereHas('locations', function ($query) {
-            $query->whereHas('users', function ($query) {
-                $query->where('user_id', Auth()->user()->id);
-            });
+        //return all device categories of location
+        $deviceCategories = DeviceCategory::whereHas('locations', function ($query) use ($id) {
+            $query->where('location_id', $id);
         })->get();
         return response()->json([
             'success' => true,

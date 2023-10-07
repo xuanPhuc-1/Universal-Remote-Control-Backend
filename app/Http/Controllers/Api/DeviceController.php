@@ -13,20 +13,22 @@ use App\Models\Device;
 class DeviceController extends Controller
 {
     //
-    public function index()
+    public function index($id)
     {
-        $hub = Hub::whereHas('users', function ($query) {
-            $query->where('user_id', auth()->user()->id);
-        })->first();
-        //select all device categories have hub_id = $hub->id
-        $device_category = $hub->deviceCategories;
-        //return all devices have device_category_id = $device_category->id
-        $devices = $device_category->devices;
+        //return all devices of device Category
+        $devices = Device::where('device_category_id', $id)->get();
+        //check if device category exists in database
+        if (!DeviceCategory::find($id)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Device Category not found',
+                'data' => ''
+            ], 404);
+        }
         return response()->json([
             'success' => true,
-            'message' => 'List Devices',
             'data' => $devices
-        ], 200);
+        ]);
     }
 
     public function show($id)
