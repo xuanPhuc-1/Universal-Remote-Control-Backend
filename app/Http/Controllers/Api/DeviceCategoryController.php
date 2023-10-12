@@ -19,28 +19,22 @@ class DeviceCategoryController extends Controller
         $deviceCategories = DeviceCategory::whereHas('locations', function ($query) use ($id) {
             $query->where('location_id', $id);
         })->get();
-        return response()->json([
-            'success' => true,
-            'data' => $deviceCategories
-        ]);
-    }
-
-    public function getCommandParameters($id)
-    {
-        //get hub mac address in same location as device category
+        //check if location has hub attached or not
+        $location = Location::find($id);
         $hub = Hub::whereHas('locations', function ($query) use ($id) {
-            $query->whereHas('deviceCategories', function ($query) use ($id) {
-                $query->where('device_category_id', $id);
-            });
+            $query->where('location_id', $id);
         })->first();
-        //get all devices in device category
-        $devices = Device::where('device_category_id', $id)->get();
-        //return hub mac address and devices
-        return response()->json([
-            'success' => true,
-            'hub' => $hub,
-            'devices' => $devices
-        ]);
+        if ($hub) {
+            return response()->json([
+                'success' => true,
+                'data' => $deviceCategories
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'No hub attached to this location'
+            ]);
+        }
     }
 
     public function create(Request $request)
