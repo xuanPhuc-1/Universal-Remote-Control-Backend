@@ -2,7 +2,7 @@
 @section('title', 'Registration')
 @section('content')
     <div class="container">
-        <form action={{ route('register.post') }} method="POST">
+        <form action={{ route('admin.registerPost') }} method="POST">
             @csrf
             <div class="mb-3">
                 <label for="exampleFullName" class="form-label">Full name</label>

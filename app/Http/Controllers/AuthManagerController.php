@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\RedirectResponse;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 use function Ramsey\Uuid\v1;
 
@@ -22,13 +23,19 @@ class AuthManagerController extends Controller
 
     function authenticate(Request $req)
     {
-        //password is hashed
+        //check if the email and password is correct
         $credentials = $req->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            $req->session()->regenerate();
-            return redirect()->intended('/admin/dashboard');
+            // Authentication passed...
+            //check if user is admin
+            if (Auth::user()->role == 'admin') {
+                return redirect()->route('dashboard');
+            } else {
+                //return to welcome page with message register success. Wait for admin to approve
+                return view('auth.message')->with('error', 'You have not admin access');
+            }
         } else {
-            return 'Username or password not matched';
+            return view('auth.message')->with('error', 'Email or password is incorrect');
         }
     }
     public function register()
@@ -39,33 +46,33 @@ class AuthManagerController extends Controller
     public function registerPost(Request $request)
     {
         $request->validate([
-            'name' => 'required',
             'email' => 'required',
             'password' => 'required'
         ]);
 
-        $data = $request->only('name', 'email', 'password');
+        $data = $request->only('email', 'password');
         $data['password'] = bcrypt($data['password']);
         $user = new User([
-            'name' => $data['name'],
             'email' => $data['email'],
             'password' => $data['password'],
         ]);
         $user->save();
-        Auth::login($user);
-        if (!$user) {
-            return redirect()->route('register')->with('error', 'Something went wrong');
-        }
-        return redirect()->route('dashboard')->with('success', 'You have been registered');
+        //return to welcome page with message register success. Wait for admin to approve
+        return view('auth.message')->with('error', 'You have not admin access');
     }
     public function forgot()
     {
-        return view('auth.forgot');
-    }
+        //check if email is in database
+        //if yes, send email to reset password
+        //if no, return to login page with message
 
+    }
+    //logout
     public function logout()
     {
+
         Auth::logout();
-        return redirect()->route('login')->with('success', 'You have been logged out');
+
+        return redirect()->route('welcome');
     }
 }

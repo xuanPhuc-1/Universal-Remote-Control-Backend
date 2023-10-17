@@ -18,7 +18,7 @@ class CreateSensorsTable extends Migration
             $table->string("device_id");
             $table->integer("humidity");
             $table->integer("temperature");
-            $table->timestamps();
+            $table->time("timestamp");
         });
     }
 

@@ -40,11 +40,6 @@ Route::namespace('Api')->group(function () {
 
 // New group for auth middleware
 Route::group(['middleware' => 'jwtAuth'], function () {
-    //Admin
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-    Route::get('/management', [AdminController::class, 'management'])->name('management');
-    Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
-
     //User 
     Route::post('/save_user_info', [AuthController::class, 'saveUserInfo'])->name('save_info');
 

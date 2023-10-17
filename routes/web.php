@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManagerController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\HubController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,27 +16,29 @@ use App\Http\Controllers\HubController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
 
 
+//Web middleware
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('welcome');
 
-// Web middleware
-// Route::group(['middleware' => 'web'], function () {
-//     Route::get('/login', [AuthManagerController::class, 'login'])->name('login');
-//     Route::post('/login', [AuthManagerController::class, 'authenticate'])->name('login.post');
-//     Route::get('/register', [AuthManagerController::class, 'register'])->name('register');
-//     Route::post('/register', [AuthManagerController::class, 'registerPost'])->name('register.post');
-//     Route::get('/logout', [AuthManagerController::class, 'logout'])->name('logout');
+    Route::get('/admin', [AuthManagerController::class, 'login'])->name('login');
+    Route::post('admin/login', [AuthManagerController::class, 'authenticate'])->name('admin.loginPost');
+    Route::get('admin/register', [AuthManagerController::class, 'register'])->name('admin.register');
+    Route::post('admin/register', [AuthManagerController::class, 'registerPost'])->name('admin.registerPost');
 
+    //Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+});
 
-//     // New group for auth middleware
-//     Route::group(['middleware' => 'auth'], function () {
-//         Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-//         Route::get('/admin/management', [AdminController::class, 'management'])->name('management');
-//         Route::get('/admin/profile', [AdminController::class, 'profile'])->name('profile');
-//         Route::resource('locations', LocationController::class);
-//         Route::resource('hubs', HubController::class);
-//     });
-// });
+//admin action
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/admin/management', [AdminController::class, 'management'])->name('management');
+    Route::get('/admin/profile', [AdminController::class, 'profile'])->name('profile');
+    Route::get('/logout', [AuthManagerController::class, 'logout'])->name('admin.logout');
+
+    //User Action
+    Route::get('/admin/user', [UserController::class, 'index'])->name('user.index');
+});
