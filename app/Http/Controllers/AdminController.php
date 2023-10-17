@@ -16,11 +16,9 @@ class AdminController extends Controller
     public function dashboard()
     {
         $config = $this->config();
+        //get all user in database
         $template = 'admin.home.index';
-        return view('admin.layout', compact(
-            'template',
-            'config'
-        ));
+        return view('admin.layout')->with(['template' => $template, 'config' => $config]);
     }
     private function config()
     {

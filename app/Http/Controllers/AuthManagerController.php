@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\RedirectResponse;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Illuminate\Support\Facades\Validator;
 
 use function Ramsey\Uuid\v1;
 
@@ -45,14 +46,22 @@ class AuthManagerController extends Controller
 
     public function registerPost(Request $request)
     {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required'
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'email' => 'required|unique:users|max:255',
+            'password' => 'required|min:6',
         ]);
+        //make sure email is unique. if not, return to register page with error message
+        if ($validator->fails()) {
+            return redirect()->route('admin.register')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
-        $data = $request->only('email', 'password');
+        $data = $request->only('name', 'email', 'password');
         $data['password'] = bcrypt($data['password']);
         $user = new User([
+            'name' => $data['name'],
             'email' => $data['email'],
             'password' => $data['password'],
         ]);
