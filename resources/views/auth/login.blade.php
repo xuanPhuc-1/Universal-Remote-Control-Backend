@@ -17,6 +17,30 @@
 </head>
 
 <body class="gray-bg">
+    @if ($errors->any())
+        <div class="error-box">
+            @foreach ($errors->all() as $error)
+                <div class="error-message">{{ $error }}</div>
+            @endforeach
+        </div>
+    @endif
+    <style>
+        .error-box {
+            position: fixed;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f2dede;
+            border: 1px solid #a94442;
+            color: #a94442;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .error-message {
+            margin-bottom: 5px;
+        }
+    </style>
     <div class="loginColumns animated fadeInDown">
         <div class="row">
 

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Location;
 
 class UserController extends Controller
 {
@@ -22,10 +26,28 @@ class UserController extends Controller
     }
     public function store(Request $request)
     {
-        $data = $request->all();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'email' => 'required|unique:users|max:255',
+            'password' => 'required|min:6',
+        ]);
+        //make sure email is unique. if not, return to register page with error message
+        if ($validator->fails()) {
+            return redirect()->route('users.create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data = $request->only('name', 'email', 'password');
         $data['password'] = bcrypt($data['password']);
-        DB::table('users')->insert($data);
-        return redirect()->route('users.index');
+        $user = new User([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+        ]);
+        $user->save();
+        //return to welcome page with message register success. Wait for admin to approve
+        return redirect()->route('users.index')->with('success', 'User created successfully');
     }
     public function edit($id)
     {
@@ -40,9 +62,24 @@ class UserController extends Controller
         DB::table('users')->where('id', $id)->update($data);
         return redirect()->route('users.index');
     }
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        DB::table('users')->where('id', $id)->delete();
-        return redirect()->route('users.index');
+        $user = User::find($request->user_delete_id);
+        if ($user) {
+            $user->delete();
+            return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        }
+        return redirect()->route('users.index')->with('error', 'User not found');
+    }
+
+    public function showLocation($id)
+    {
+        $template = 'admin.users.show';
+        $user = DB::table('users')->where('id', $id)->first();
+        //get all location of user in user_location table
+        $locations = Location::whereHas('users', function ($query) {
+            $query->where('user_id', Auth::user()->id);
+        })->get();
+        return view('admin.layout')->with(['template' => $template, 'locations' => $locations]);
     }
 }

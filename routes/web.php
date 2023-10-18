@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManagerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +41,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', [AuthManagerController::class, 'logout'])->name('admin.logout');
 
     //User Action
-    Route::get('/admin/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/admin/user', [UserController::class, 'index'])->name('users.index');
+    Route::get('/admin/user/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/admin/user/store', [UserController::class, 'store'])->name('users.store');
+    Route::get('/admin/user/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('/admin/user/update/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::post('/admin/user/delete', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/admin/user/show/{id}', [UserController::class, 'showLocation'])->name('users.showLocation');
+
+    //Location Action
+    Route::get('/admin/location', [LocationController::class, 'index'])->name('admin.locations.index');
+    Route::get('/admin/location/create', [LocationController::class, 'create'])->name('admin.locations.create');
+    Route::post('/admin/location/store', [LocationController::class, 'store'])->name('admin.locations.store');
+    Route::get('/admin/location/edit/{id}', [LocationController::class, 'edit'])->name('admin.locations.edit');
+    Route::post('/admin/location/update/{id}', [LocationController::class, 'update'])->name('admin.locations.update');
+    Route::post('/admin/location/delete', [LocationController::class, 'destroy'])->name('admin.locations.destroy');
 });

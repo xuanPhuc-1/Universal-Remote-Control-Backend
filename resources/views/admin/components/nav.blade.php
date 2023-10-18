@@ -2,12 +2,30 @@
     <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" action="search_results.html">
-                <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search"
-                        id="top-search">
+            @if ($errors->any())
+                <div class="error-box">
+                    @foreach ($errors->all() as $error)
+                        <div class="error-message">{{ $error }}</div>
+                    @endforeach
                 </div>
-            </form>
+            @endif
+            <style>
+                .error-box {
+                    position: fixed;
+                    top: 20%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: #f2dede;
+                    border: 1px solid #a94442;
+                    color: #a94442;
+                    padding: 15px;
+                    border-radius: 4px;
+                }
+
+                .error-message {
+                    margin-bottom: 5px;
+                }
+            </style>
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li>

@@ -5,5 +5,6 @@ return [
     'Name' => 'Tên',
     'Email' => 'Email',
     'Role' => 'Vai trò',
+    'Form' => 'Đăng ký người dùng',
 
 ];

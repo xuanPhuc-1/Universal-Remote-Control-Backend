@@ -8,7 +8,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
                 </div>
                 <div class="modal-body">
-                    <h5>Bạn có chắc chắn muốn xoá người dùng này không?</h5>
+                    <h5>Bạn có chắc chắn muốn xoá phòng này không?</h5>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger">Yes</button>
@@ -27,7 +27,7 @@
             <li>
                 <a href="{{ route('dashboard') }}">Dashboard</a>
             </li>
-            <li class="active"><strong>Quản lý người dùng</strong></li>
+            <li class="active"><strong>Quản lý phòng</strong></li>
         </ol>
     </div>
 </div>
@@ -44,9 +44,10 @@
                         </span>
                     </div>
                     <!-- Thêm nút "Thêm người dùng" -->
-                    <a class="btn btn-primary btn-primary" href="{{ route('users.create') }}">Thêm người dùng</a>
+                    <a class="btn btn-primary btn-primary" href="{{ route('admin.locations.create') }}">Thêm phòng</a>
                     <!-- Thêm nút "Xoá theo lựa chọn" -->
-                    <a class="btn btn-primary btn-danger" href="{{ route('users.destroy') }}">Xoá các mục đã chọn</a>
+                    <a class="btn btn-primary btn-danger" href="{{ route('admin.locations.destroy') }}">Xoá các phòng đã
+                        chọn</a>
                 </div>
 
             </div>
@@ -56,36 +57,29 @@
                     <thead>
                         <tr>
                             <th><input type="checkbox" value="" id="checkAll" class="input-checkbox">
-                            <th>{{ config('apps.user.Name') }}</th>
-                            <th>{{ config('apps.user.Email') }}</th>
-                            <th>Avatar</th>
-                            <th>Vai trò</th>
+                            <th>Id</th>
+                            <th>User Id</th>
+                            <th>{{ config('apps.location.Name') }}</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    @foreach ($users as $user)
+                    @foreach ($locations as $location)
                         <tbody>
 
                             <div class="col">
                                 <td>
                                     <input type="checkbox" value="" class="input-checkbox checkBoxItem">
                                 </td>
+                                <td>{{ $location->id }}</td>
+                                <td>{{ $location->user_id }}</td>
                                 {{-- i want when click on user name, go to route('users.show') with user id --}}
-                                <td><a
-                                        href="{{ route('users.showLocation', ['id' => $user->id]) }}">{{ $user->name }}</a>
-                                </td>
-                                <td>{{ $user->email }}</td>
-                                <td>
-                                    <img src="{{ $user->photo }}" alt="Avatar" class="avatar">
-                                </td>
-                                <td>
-                                    {{ $user->role }}
+                                <td><a>{{ $location->name }}</a>
                                 </td>
                                 <td>
                                     <a class="btn btn-primary btn-success"
-                                        href="{{ route('users.edit', ['id' => $user->id]) }}">Sửa</a>
+                                        href="{{ route('locations.edit', ['id' => $location->id]) }}">Sửa</a>
                                     <button class="btn btn-primary btn-danger deleteUserBtn" type="button"
-                                        value="{{ $user->id }}">
+                                        value="{{ $location->id }}">
                                         Xoá
                                     </button>
                                 </td>

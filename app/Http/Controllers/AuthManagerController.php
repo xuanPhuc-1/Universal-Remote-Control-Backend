@@ -22,21 +22,31 @@ class AuthManagerController extends Controller
         return view('auth.login');
     }
 
-    function authenticate(Request $req)
+    function authenticate(Request $request)
     {
         //check if the email and password is correct
-        $credentials = $req->only('email', 'password');
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        //if not, return to login page with error message
+        if ($validator->fails()) {
+            return redirect()->route('login')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $credentials = $request->only('email', 'password');
+        //if correct, return to dashboard
         if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            //check if user is admin
-            if (Auth::user()->role == 'admin') {
+            $user = Auth::user();
+            if ($user->role == 'admin') {
                 return redirect()->route('dashboard');
             } else {
-                //return to welcome page with message register success. Wait for admin to approve
                 return view('auth.message')->with('error', 'You have not admin access');
             }
         } else {
-            return view('auth.message')->with('error', 'Email or password is incorrect');
+            //if not, return to login page with error message
+            return redirect()->route('login')->withErrors('Email or password is incorrect');
         }
     }
     public function register()
