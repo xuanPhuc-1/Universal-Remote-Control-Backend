@@ -34,7 +34,7 @@ Route::group(['middleware' => 'web'], function () {
 });
 
 //admin action
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth:web'], function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/admin/management', [AdminController::class, 'management'])->name('management');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('profile');

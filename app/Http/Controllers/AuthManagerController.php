@@ -37,8 +37,9 @@ class AuthManagerController extends Controller
         }
         $credentials = $request->only('email', 'password');
         //if correct, return to dashboard
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+        if (auth()->guard('web')->attempt($credentials)) {
+            //get user from web guard
+            $user = auth()->guard('web')->user();
             if ($user->role == 'admin') {
                 return redirect()->route('dashboard');
             } else {

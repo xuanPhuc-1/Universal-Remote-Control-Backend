@@ -13,12 +13,11 @@ return [
     |
     */
 
+    //i want to use both web and api for guard
     'defaults' => [
         'guard' => 'api',
-        'guard' => 'web',
         'passwords' => 'users',
     ],
-
 
     'guards' => [
         'web' => [
