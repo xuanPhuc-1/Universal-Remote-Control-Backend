@@ -5,7 +5,7 @@
     @include('admin.components.head')
 </head>
 
-<body>
+<body class="pace-done">
     <div id="wrapper">
         @include('admin.components.sidebar')
 

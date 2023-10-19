@@ -47,7 +47,7 @@
                     <a class="btn btn-primary btn-primary" href="{{ route('admin.locations.create') }}">Add room</a>
                     <!-- Thêm nút "Xoá theo lựa chọn" -->
                     <a class="btn btn-primary btn-danger" href="{{ route('admin.locations.destroy') }}">Delete
-                        Selected</a>s
+                        Selected</a>
                 </div>
 
             </div>

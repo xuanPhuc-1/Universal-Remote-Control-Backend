@@ -27,7 +27,7 @@
             <li>
                 <a href="{{ route('dashboard') }}">Dashboard</a>
             </li>
-            <li class="active"><strong>Quản lý phòng của {{ $user->name }}</strong></li>
+            <li class="active"><strong>Room Management {{ $user->name }}</strong></li>
         </ol>
     </div>
 </div>
@@ -44,10 +44,10 @@
                         </span>
                     </div>
                     <!-- Thêm nút "Thêm người dùng" -->
-                    <a class="btn btn-primary btn-primary" href="{{ route('admin.locations.create') }}">Thêm phòng</a>
+                    <a class="btn btn-primary btn-primary" href="{{ route('admin.locations.create') }}">Add Room</a>
                     <!-- Thêm nút "Xoá theo lựa chọn" -->
-                    <a class="btn btn-primary btn-danger" href="{{ route('admin.locations.destroy') }}">Xoá các phòng đã
-                        chọn</a>
+                    <a class="btn btn-primary btn-danger" href="{{ route('admin.locations.destroy') }}">Delete
+                        Selected</a>
                 </div>
 
             </div>
