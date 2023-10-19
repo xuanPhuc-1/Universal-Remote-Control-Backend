@@ -48,6 +48,8 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::post('/admin/user/update/{id}', [UserController::class, 'update'])->name('users.update');
     Route::post('/admin/user/delete', [UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/admin/user/show/{id}', [UserController::class, 'showLocation'])->name('users.showLocation');
+    //Set role to user
+    Route::post('/admin/user/setRole/{id}', [UserController::class, 'setRole'])->name('users.setRole');
 
     //Location Action
     Route::get('/admin/location', [LocationController::class, 'index'])->name('admin.locations.index');

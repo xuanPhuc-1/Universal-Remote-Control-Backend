@@ -1,7 +1,7 @@
 <?php
 return [
-    'title' => 'Quản lý phòng',
+    'title' => 'Room Management',
     'tableHeading' => 'Danh sách phòng',
-    'Name' => 'Tên phòng',
+    'Name' => 'Room Name',
     'Number' => 'Số thiết bị trong phòng',
 ];

@@ -8,3 +8,18 @@ h5{
     text-transform: uppercase;
     font-weight: bold;
 }
+
+/* Set the table width fit the content */
+table {
+    table-layout: fixed;
+/* set with of collunm auto fit content */
+    width: 100%;
+    
+}
+/* set exact size for collunm 1 and 2 */
+th:nth-child(1), td:nth-child(1) {
+    width: 5%;
+}
+th:nth-child(2), td:nth-child(2) {
+    width: 5%;
+}

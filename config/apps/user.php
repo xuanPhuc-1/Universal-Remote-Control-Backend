@@ -1,8 +1,8 @@
 <?php
 return [
-    'title' => 'Quản lý người dùng',
-    'tableHeading' => 'Danh sách người dùng',
-    'Name' => 'Tên',
+    'title' => 'User Management',
+    'tableHeading' => 'User List',
+    'Name' => 'User Name',
     'Email' => 'Email',
     'Role' => 'Vai trò',
     'Form' => 'Đăng ký người dùng',

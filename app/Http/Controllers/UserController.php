@@ -74,12 +74,23 @@ class UserController extends Controller
 
     public function showLocation($id)
     {
-        $template = 'admin.users.show';
+        $template = 'admin.users.locations';
         $user = DB::table('users')->where('id', $id)->first();
         //get all location of user in user_location table
         $locations = Location::whereHas('users', function ($query) {
-            $query->where('user_id', Auth::user()->id);
+            $query->where('user_id', auth()->guard('web')->user()->id);
         })->get();
-        return view('admin.layout')->with(['template' => $template, 'locations' => $locations]);
+        return view('admin.layout')->with(['template' => $template, 'locations' => $locations, 'user' => $user]);
+    }
+    public function setRole($id)
+    {
+        $user = User::find($id);
+        //if user is admin, send error message redirect back
+        if ($user->role == 'admin') {
+            return redirect()->back()->with('error', 'User is already admin');
+        }
+        $user->role = 'admin';
+        $user->save();
+        return redirect()->route('users.index')->with('success', 'User role updated successfully');
     }
 }

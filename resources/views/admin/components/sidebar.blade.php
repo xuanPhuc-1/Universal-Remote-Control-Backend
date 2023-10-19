@@ -20,8 +20,8 @@
                 <a href="/admin/dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span>
                     <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="{{ route('users.index') }}">Quản lý người dùng</a></li>
-                    <li><a href="{{ route('admin.locations.index') }}">Quản lý phòng</a></li>
+                    <li><a href="{{ route('users.index') }}">User Management</a></li>
+                    <li><a href="{{ route('admin.locations.index') }}">Room Management</a></li>
                 </ul>
             </li>
         </ul>
