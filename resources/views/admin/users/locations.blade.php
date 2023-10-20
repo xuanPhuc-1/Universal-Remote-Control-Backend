@@ -44,7 +44,7 @@
                         </span>
                     </div>
                     <!-- Thêm nút "Thêm người dùng" -->
-                    <a class="btn btn-primary btn-primary" href="{{ route('admin.locations.create') }}">Add room</a>
+                    <a class="btn btn-primary btn-primary" href="{{ route('admin.locations.create') }}">Add Room</a>
                     <!-- Thêm nút "Xoá theo lựa chọn" -->
                     <a class="btn btn-primary btn-danger" href="{{ route('admin.locations.destroy') }}">Delete
                         Selected</a>
