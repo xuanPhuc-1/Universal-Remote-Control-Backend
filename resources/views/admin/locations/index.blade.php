@@ -43,9 +43,7 @@
                             <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
                         </span>
                     </div>
-                    <!-- Thêm nút "Thêm người dùng" -->
                     <a class="btn btn-primary btn-primary" href="{{ route('admin.locations.create') }}">Add room</a>
-                    <!-- Thêm nút "Xoá theo lựa chọn" -->
                     <a class="btn btn-primary btn-danger" href="{{ route('admin.locations.destroy') }}">Delete
                         Selected</a>s
                 </div>
@@ -74,7 +72,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-primary btn-success"
-                                        href="{{ route('locations.edit', ['id' => $location->id]) }}">Edit</a>
+                                        href="{{ route('admin.locations.edit', ['id' => $location->id]) }}">Edit</a>
                                     <button class="btn btn-primary btn-danger deleteUserBtn" type="button"
                                         value="{{ $location->id }}">
                                         Delete

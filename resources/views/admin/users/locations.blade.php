@@ -5,10 +5,10 @@
                 @csrf
                 <input type="hidden" name="user_delete_id" id = "user_id">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete User's Location</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Delete User's Room</h5>
                 </div>
                 <div class="modal-body">
-                    <h5>Bạn có chắc chắn muốn xoá phòng này không?</h5>
+                    <h5>Do you really want to delete this user's room?</h5>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger">Yes</button>
@@ -27,7 +27,7 @@
             <li>
                 <a href="{{ route('dashboard') }}">Dashboard</a>
             </li>
-            <li class="active"><strong>Quản lý phòng của {{ $user->name }}</strong></li>
+            <li class="active"><strong>Room Management {{ $user->name }}</strong></li>
         </ol>
     </div>
 </div>
@@ -44,10 +44,10 @@
                         </span>
                     </div>
                     <!-- Thêm nút "Thêm người dùng" -->
-                    <a class="btn btn-primary btn-primary" href="{{ route('admin.locations.create') }}">Thêm phòng</a>
+                    <a class="btn btn-primary btn-primary" href="{{ route('admin.locations.create') }}">Add room</a>
                     <!-- Thêm nút "Xoá theo lựa chọn" -->
-                    <a class="btn btn-primary btn-danger" href="{{ route('admin.locations.destroy') }}">Xoá các phòng đã
-                        chọn</a>
+                    <a class="btn btn-primary btn-danger" href="{{ route('admin.locations.destroy') }}">Delete
+                        Selected</a>
                 </div>
 
             </div>
