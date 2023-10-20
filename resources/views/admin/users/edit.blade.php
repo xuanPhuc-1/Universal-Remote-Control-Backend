@@ -16,21 +16,23 @@
     </div>
     <div class="row">
         <div class="col-lg-5">
-            <form method="get" class="form-horizontal">
+            <form method="post" class="form-horizontal">
+                @csrf
                 <div class="hr-line-dashed"></div>
                 <div class="form-group"><label class="col-sm-2 control-label">Name</label>
-                    <div class="col-sm-10"><input type="text" class="form-control">
+                    <div class="col-sm-10"><input type="text" class="form-control" placeholder="{{ $user->name }}">
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group"><label class="col-sm-2 control-label">Gmail</label>
-                    <div class="col-sm-10"><input type="email" class="form-control">
+                    <div class="col-sm-10"><input type="email" class="form-control" placeholder="{{ $user->email }}">
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group"><label class="col-sm-2 control-label">Password</label>
 
-                    <div class="col-sm-10"><input type="password" class="form-control" name="password"></div>
+                    <div class="col-sm-10"><input type="password" class="form-control" name="password"
+                            placeholder="**********"></div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Save
