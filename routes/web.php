@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthManagerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\HubController;
+use App\Http\Controllers\DeviceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,4 +60,20 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::get('/admin/location/edit/{id}', [LocationController::class, 'edit'])->name('admin.locations.edit');
     Route::post('/admin/location/update/{id}', [LocationController::class, 'update'])->name('admin.locations.update');
     Route::post('/admin/location/delete', [LocationController::class, 'destroy'])->name('admin.locations.destroy');
+
+    //Hub Action
+    Route::get('/admin/hub', [HubController::class, 'index'])->name('admin.hubs.index');
+    Route::get('/admin/hub/create', [HubController::class, 'create'])->name('admin.hubs.create');
+    Route::post('/admin/hub/store', [HubController::class, 'store'])->name('admin.hubs.store');
+    Route::get('/admin/hub/edit/{id}', [HubController::class, 'edit'])->name('admin.hubs.edit');
+    Route::post('/admin/hub/update/{id}', [HubController::class, 'update'])->name('admin.hubs.update');
+    Route::post('/admin/hub/delete', [HubController::class, 'destroy'])->name('admin.hubs.destroy');
+
+    //Device Action
+    Route::get('/admin/device', [DeviceController::class, 'index'])->name('admin.devices.index');
+    Route::get('/admin/device/create', [DeviceController::class, 'create'])->name('admin.devices.create');
+    Route::post('/admin/device/store', [DeviceController::class, 'store'])->name('admin.devices.store');
+    Route::get('/admin/device/edit/{id}', [DeviceController::class, 'edit'])->name('admin.devices.edit');
+    Route::post('/admin/device/update/{id}', [DeviceController::class, 'update'])->name('admin.devices.update');
+    Route::post('/admin/device/delete', [DeviceController::class, 'destroy'])->name('admin.devices.destroy');
 });

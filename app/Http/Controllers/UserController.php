@@ -76,10 +76,11 @@ class UserController extends Controller
     {
         $template = 'admin.users.locations';
         $user = DB::table('users')->where('id', $id)->first();
-        //get all location of user in user_location table
-        $locations = Location::whereHas('users', function ($query) {
-            $query->where('user_id', auth()->guard('web')->user()->id);
-        })->get();
+        //get all location of user by searching table id user_location table and get all information of these locations
+        $locations = DB::table('user_location')->where('user_id', $id)->join('locations', 'user_location.location_id', '=', 'locations.id')->get();
+
+
+        //dd($locations);
         return view('admin.layout')->with(['template' => $template, 'locations' => $locations, 'user' => $user]);
     }
     public function setRole($id)

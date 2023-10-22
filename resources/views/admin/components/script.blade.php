@@ -17,6 +17,18 @@
     })
 </script>
 
+<script>
+    $(document).ready(function(e) {
+        $('.deleteLocationBtn').click(function(e) {
+            e.preventDefault();
+            var locationId = $(this).val();
+            $('#location_id').val(locationId);
+            $('#deleteModal').modal('show');
+
+        });
+    })
+</script>
+
 @if (isset($config['js'])) && is_array($config['js'])
     @foreach ($config['js'] as $js)
         <script src="{{ $js }}"></script>

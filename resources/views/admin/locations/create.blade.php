@@ -6,7 +6,7 @@
             <li>
                 <a href="{{ route('dashboard') }}">Dashboard</a>
             </li>
-            <li class="active"><strong>User Management</strong></li>
+            <li class="active"><strong>User's Room Management</strong></li>
         </ol>
     </div>
 </div>
@@ -14,7 +14,7 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>{{ config('apps.user.Form') }} <small>Complete all required informations</small></h5>
+                <h5>Location Registration Form <small>Complete all required informations</small></h5>
                 <div class="ibox-tools">
                     <a class="close-link" href="{{ route('users.index') }}">
                         <i class="fa fa-times"></i>
@@ -24,25 +24,14 @@
             <div class="ibox-content">
                 <form method="post" class="form-horizontal" action="{{ route('users.store') }}">
                     @csrf
-                    <div class="form-group"><label class="col-sm-2 control-label">Email</label>
-                        <div class="col-sm-10"><input type="email" name="email" placeholder="Email"
+                    <div class="form-group"><label class="col-sm-2 control-label">Location Name</label>
+                        <div class="col-sm-10"><input type="email" name="email" placeholder="Location name"
                                 class="form-control" required>
                         </div>
                     </div>
-                    <div class="form-group"><label class="col-sm-2 control-label">Name</label>
-                        <div class="col-sm-10"><input type="text" name="name" placeholder="User name"
-                                class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="form-group"><label class="col-sm-2 control-label">Mật khẩu</label>
-                        <div class="col-sm-10"><input type="password" name="password" placeholder="Password"
-                                class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <a class="btn btn-white" href="{{ route('users.index') }}">Cancel</a>
+                            <a class="btn btn-white" href="{{ route('admin.locations.index') }}">Cancel</a>
                             <button class="btn btn-primary" type="submit">Save changes</button>
                         </div>
                     </div>

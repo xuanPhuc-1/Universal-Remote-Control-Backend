@@ -13,15 +13,25 @@
                         </ul>
                 </div>
                 <div class="logo-element">
-                    IN+
+                    IOT
                 </div>
             </li>
             <li class="active">
-                <a href="/admin/dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span>
+                <a href="/admin/dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">User Control
+                        Panel</span>
                     <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="{{ route('users.index') }}">User Management</a></li>
                     <li><a href="{{ route('admin.locations.index') }}">Room Management</a></li>
+                </ul>
+            </li>
+
+            <li class="active">
+                <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">Device Control Panel</span>
+                    <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="#">Hub Management</a></li>
+                    <li><a href="#">Device Management</a></li>
                 </ul>
             </li>
         </ul>

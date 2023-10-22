@@ -53,7 +53,7 @@
                     </div>
                     <p class="font-bold">{{ $user->name }}</p>
                     <div class="text-center">
-                        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary btn-xs">Change
+                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-xs">Change
                             Avatar</a>
                     </div>
                 @endif

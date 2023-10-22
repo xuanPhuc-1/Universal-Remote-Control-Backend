@@ -80,7 +80,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-primary btn-success"
-                                        href="{{ route('locations.edit', ['id' => $location->id]) }}">Sửa</a>
+                                        href="{{ route('admin.locations.edit', ['id' => $location->id, 'location' => $location]) }}">Edit</a>
                                     <button class="btn btn-primary btn-danger deleteUserBtn" type="button"
                                         value="{{ $location->id }}">
                                         Xoá
