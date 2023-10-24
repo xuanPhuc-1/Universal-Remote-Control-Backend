@@ -415,8 +415,8 @@
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log
                         in</a>
 
-                    @if (Route::has('register.get'))
-                        <a href="{{ route('register.get') }}"
+                    @if (Route::has('admin.register'))
+                        <a href="{{ route('admin.register') }}"
                             class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
                     @endif
                 @endauth
