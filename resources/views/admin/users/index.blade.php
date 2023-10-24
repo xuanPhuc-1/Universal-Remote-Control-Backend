@@ -60,6 +60,7 @@
                             <th>{{ config('apps.user.Email') }}</th>
                             <th>Avatar</th>
                             <th>Role</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -90,6 +91,8 @@
 
 
                                 </td>
+                                <td>
+                                    <i class="is-size-6 fa fa-user p-r-6 {{ isOnline($user->id) }}"></i>
                                 <td>
                                     <a class="btn btn-primary btn-success"
                                         href="{{ route('users.edit', ['id' => $user->id]) }}">Edit</a>

@@ -23,3 +23,9 @@ th:nth-child(1), td:nth-child(1) {
 th:nth-child(2), td:nth-child(2) {
     width: 5%;
 }
+.user_online{
+    color: #00ff00;
+}
+.user_offline{
+    color: #ff0000;
+}
