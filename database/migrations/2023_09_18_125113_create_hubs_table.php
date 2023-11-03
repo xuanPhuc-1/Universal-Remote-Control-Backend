@@ -17,7 +17,6 @@ class CreateHubsTable extends Migration
             $table->increments('id');
             $table->string('MAC_address')->unique();
             $table->string('name');
-            $table->json('command')->nullable();
             $table->timestamps();
         });
     }

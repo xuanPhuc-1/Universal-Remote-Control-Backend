@@ -16,6 +16,7 @@ class CreateDeviceCategoriesTable extends Migration
         Schema::create('device_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->json('ir_codes');
             $table->timestamps();
         });
     }

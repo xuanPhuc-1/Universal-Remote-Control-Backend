@@ -23,10 +23,13 @@ class LocationController extends Controller
         $locations = Location::whereHas('users', function ($query) {
             $query->where('user_id', Auth::user()->id);
         })->get();
+        //get all device categories in database
+        $deviceCategories = DB::table('device_categories')->get();
         return response()->json([
             'success' => true,
             'user' => Auth::user(),
-            'locations' => $locations
+            'locations' => $locations,
+            'deviceCategories' => $deviceCategories
         ]);
     }
 

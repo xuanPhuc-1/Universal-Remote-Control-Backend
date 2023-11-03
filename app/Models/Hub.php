@@ -16,7 +16,6 @@ class Hub extends Model
         "MAC_address",
         "name",
         "user_id",
-        "command",
     ];
 
     public function users()

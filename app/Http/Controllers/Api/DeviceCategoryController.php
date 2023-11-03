@@ -46,15 +46,17 @@ class DeviceCategoryController extends Controller
         if ($location) {
             $deviceCategory = new DeviceCategory();
             $deviceCategory->name = $request->input('device_category_name');
-            //check if the device category name is unique in the location
-            if (DeviceCategory::where('name', $request->input('device_category_name'))->whereHas('locations', function ($query) use ($location) {
-                $query->where('location_id', $location->id);
-            })->first()) {
+            //if the category already exists in the database, do not create a new one use the existing one
+
+            if (DeviceCategory::where('name', $request->input('device_category_name'))->first()) {
+                $deviceCategory = DeviceCategory::where('name', $request->input('device_category_name'))->first();
+            } else {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Device category name already exists in this location'
+                    'message' => 'Device category not support'
                 ]);
             }
+
             $deviceCategory->save();
             $deviceCategory->locations()->attach($location->id);
         } else {
@@ -71,6 +73,8 @@ class DeviceCategoryController extends Controller
         //return response true to user
         return response()->json([
             'success' => true,
+            'data' => $deviceCategory,
+            'location' => $location,
             'message' => 'Device category created'
         ]);
     }
