@@ -6,7 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\HubController;
-use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\DevicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,10 +70,10 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::post('/admin/hub/delete', [HubController::class, 'destroy'])->name('admin.hubs.destroy');
 
     //Device Action
-    Route::get('/admin/device', [DeviceController::class, 'index'])->name('admin.devices.index');
-    Route::get('/admin/device/create', [DeviceController::class, 'create'])->name('admin.devices.create');
-    Route::post('/admin/device/store', [DeviceController::class, 'store'])->name('admin.devices.store');
-    Route::get('/admin/device/edit/{id}', [DeviceController::class, 'edit'])->name('admin.devices.edit');
-    Route::post('/admin/device/update/{id}', [DeviceController::class, 'update'])->name('admin.devices.update');
-    Route::post('/admin/device/delete', [DeviceController::class, 'destroy'])->name('admin.devices.destroy');
+    Route::get('/admin/device', [DevicesController::class, 'index'])->name('admin.devices.index');
+    Route::get('/admin/device/create', [DevicesController::class, 'create'])->name('admin.devices.create');
+    Route::post('/admin/device/store', [DevicesController::class, 'store'])->name('admin.devices.store');
+    Route::get('/admin/device/edit/{id}', [DevicesController::class, 'edit'])->name('admin.devices.edit');
+    Route::post('/admin/device/update/{id}', [DevicesController::class, 'update'])->name('admin.devices.update');
+    Route::post('/admin/device/delete', [DevicesController::class, 'destroy'])->name('admin.devices.destroy');
 });

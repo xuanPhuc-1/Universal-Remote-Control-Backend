@@ -10,7 +10,7 @@ use App\Models\Hub;
 use League\Flysystem\Adapter\Local;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
 {

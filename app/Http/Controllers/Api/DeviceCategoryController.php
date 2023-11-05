@@ -9,12 +9,21 @@ use App\Models\Hub;
 use App\Models\Location;
 use App\Models\DeviceCategory;
 use App\Models\Device;
+use Illuminate\Support\Facades\DB;
 
 class DeviceCategoryController extends Controller
 {
     //
     public function index($id)
     {
+        $location = Location::find($id);
+        $hub = Hub::whereHas('locations', function ($query) use ($location) {
+            $query->where('location_id', $location->id);
+        })->first();
+        //get the MAC address of the hub
+        $hub_mac_address = $hub->MAC_address;
+        //get the latest row in sensors table which have device_id == mac_address
+        $sensors = DB::table('sensors')->where('device_id', $hub_mac_address)->orderBy('id', 'desc')->first();
         //return all device categories of location
         $deviceCategories = DeviceCategory::whereHas('locations', function ($query) use ($id) {
             $query->where('location_id', $id);
@@ -27,7 +36,8 @@ class DeviceCategoryController extends Controller
         if ($hub) {
             return response()->json([
                 'success' => true,
-                'data' => $deviceCategories
+                'data' => $deviceCategories,
+                'sensor' => $sensors,
             ]);
         } else {
             return response()->json([
@@ -41,7 +51,7 @@ class DeviceCategoryController extends Controller
     {
         $request->all();
         //check find the location id by the location_name in request
-        $location = Location::where('name', $request->input('location_name'))->first();
+        $location = Location::where('name', $request->input('location_name'))->orderBy('id', 'desc')->first();
         //check if location exists in database use attach the location_id to the device_category to the device_category_location table
         if ($location) {
             $deviceCategory = new DeviceCategory();
