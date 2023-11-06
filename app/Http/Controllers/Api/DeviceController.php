@@ -17,6 +17,21 @@ class DeviceController extends Controller
     {
         //return all devices of device Category
         $devices = Device::where('device_category_id', $id)->get();
+        //get device category which device belongs to
+        $device_category = DeviceCategory::find($id);
+        $ir_codes = $device_category->ir_codes;
+
+        //get the location of the device category
+        $location = Location::whereHas('deviceCategories', function ($query) use ($id) {
+            $query->where('device_category_id', $id);
+        })->first();
+        $location_id = $location->id;
+        //from hub_location and device_category_location table, get the hub in same location with device category and get the MAC address of the hub
+        $hub = Hub::whereHas('locations', function ($query) use ($location_id) {
+            $query->where('location_id', $location_id);
+        })->first();
+        $hub_mac_address = $hub->MAC_address;
+
         //check if device category exists in database
         if (!DeviceCategory::find($id)) {
             return response()->json([
@@ -27,7 +42,9 @@ class DeviceController extends Controller
         }
         return response()->json([
             'success' => true,
-            'data' => $devices
+            'data' => $devices,
+            'ir_codes' => $ir_codes,
+            'MAC' => $hub_mac_address
         ]);
     }
 

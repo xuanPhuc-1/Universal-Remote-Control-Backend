@@ -28,6 +28,7 @@ class DeviceCategoryController extends Controller
         $deviceCategories = DeviceCategory::whereHas('locations', function ($query) use ($id) {
             $query->where('location_id', $id);
         })->get();
+        $ir_codes = $deviceCategories->pluck('ir_code');
         //check if location has hub attached or not
         $location = Location::find($id);
         $hub = Hub::whereHas('locations', function ($query) use ($id) {
