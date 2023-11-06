@@ -40,6 +40,17 @@ class HubController extends Controller
             ]);
         }
 
+        //check if pair hub_id and user_id already exists in user_hub table
+        $user_hubs = $hub->users()->get();
+        foreach ($user_hubs as $user_hub) {
+            if ($user_hub->id == Auth::user()->id) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Hub already added to your home'
+                ]);
+            }
+        }
+
         //check if location name and user_id is unique
         if (Location::where('name', $request->input('location_name'))->whereHas('users', function ($query) {
             $query->where('user_id', Auth::user()->id);
