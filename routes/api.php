@@ -59,4 +59,6 @@ Route::group(['middleware' => 'jwtAuth'], function () {
     //Device 
     Route::post('/devices/create', [DeviceController::class, 'create'])->name('devices.create');
     Route::get('/device_categories/{id}/devices', [DeviceController::class, 'index'])->name('device_categories.devices');
+    //Add device to user
+    Route::post('/devices/add', [DeviceController::class, 'add'])->name('devices.add');
 });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeviceCategoriesTable extends Migration
+class UserDevice extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateDeviceCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('device_categories', function (Blueprint $table) {
+        //
+        Schema::create('user_device', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->integer('device_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
@@ -27,6 +29,7 @@ class CreateDeviceCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('device_categories');
+        //
+        Schema::dropIfExists('user_device');
     }
 }

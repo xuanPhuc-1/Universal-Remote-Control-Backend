@@ -15,10 +15,11 @@ class CreateDevicesTable extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->increments("id");
-            $table->string("name");
-            $table->timestamps();
             $table->unsignedInteger("device_category_id");
             $table->foreign("device_category_id")->references("id")->on("device_categories")->onDelete("cascade");
+            $table->string("name");
+            $table->json('ir_codes');
+            $table->timestamps();
         });
     }
 

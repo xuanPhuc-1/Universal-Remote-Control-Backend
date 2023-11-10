@@ -19,7 +19,6 @@ class DeviceController extends Controller
         $devices = Device::where('device_category_id', $id)->get();
         //get device category which device belongs to
         $device_category = DeviceCategory::find($id);
-        $ir_codes = $device_category->ir_codes;
 
         //get the location of the device category
         $location = Location::whereHas('deviceCategories', function ($query) use ($id) {
@@ -43,7 +42,7 @@ class DeviceController extends Controller
         return response()->json([
             'success' => true,
             'data' => $devices,
-            'ir_codes' => $ir_codes,
+            'device_category_id' => $device_category->id,
             'MAC' => $hub_mac_address
         ]);
     }
@@ -69,9 +68,10 @@ class DeviceController extends Controller
 
     public function create(Request $request)
     {
+        $device = Device::find($request->device_id);
         $device = new Device();
         $device->name = $request->device_name;
-        //find the id of the device category
+        $device->ir_codes = $request->ir_codes;
         if (!DeviceCategory::where('name', $request->device_category)->first()) {
             return response()->json([
                 'success' => false,
@@ -81,12 +81,26 @@ class DeviceController extends Controller
         }
         $device_category = DeviceCategory::where('name', $request->device_category)->first();
         $device->device_category_id = $device_category->id;
+
         $device->save();
 
         return response()->json([
             'success' => true,
             'message' => 'Add Device Success',
             'device' => $device
+        ], 200);
+    }
+
+    public function add(Request $request)
+    {
+        #attach user to device 
+        $user = User::find($request->user_id);
+        $device = Device::find($request->device_id);
+        $device->users()->attach($user->id);
+        return response()->json([
+            'success' => true,
+            'message' => 'Add Device Success',
+            'data' => $user
         ], 200);
     }
 

@@ -12,10 +12,17 @@ class Device extends Model
     protected $fillable = [
         'name',
         'device_category_id',
+        'ir_code',
+        'user_id',
     ];
 
     public function deviceCategory()
     {
         return $this->belongsTo(DeviceCategory::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_device', 'device_id', 'user_id');
     }
 }
