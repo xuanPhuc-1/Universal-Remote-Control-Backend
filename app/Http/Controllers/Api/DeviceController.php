@@ -13,37 +13,29 @@ use App\Models\Device;
 class DeviceController extends Controller
 {
     //
-    public function index($id)
+    public function index($device_category_id)
     {
-        //return all devices of device Category
-        $devices = Device::where('device_category_id', $id)->get();
-        //get device category which device belongs to
-        $device_category = DeviceCategory::find($id);
-
-        //get the location of the device category
-        $location = Location::whereHas('deviceCategories', function ($query) use ($id) {
-            $query->where('device_category_id', $id);
+        //return all devices of device category
+        $devices_supported = Device::where('device_category_id', $device_category_id)->get();
+        //return all devices of device category of user in location
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        //get all devices of device category belong to user
+        $devices = $user->devices()->where('device_category_id', $device_category_id)->get();
+        //hub of this location belong to user
+        $location = Location::whereHas('users', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
         })->first();
-        $location_id = $location->id;
-        //from hub_location and device_category_location table, get the hub in same location with device category and get the MAC address of the hub
-        $hub = Hub::whereHas('locations', function ($query) use ($location_id) {
-            $query->where('location_id', $location_id);
+        $hub = Hub::whereHas('locations', function ($query) use ($location) {
+            $query->where('location_id', $location->id);
         })->first();
-        $hub_mac_address = $hub->MAC_address;
+        $mac = $hub->MAC_address;
 
-        //check if device category exists in database
-        if (!DeviceCategory::find($id)) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Device Category not found',
-                'data' => ''
-            ], 404);
-        }
         return response()->json([
             'success' => true,
-            'data' => $devices,
-            'device_category_id' => $device_category->id,
-            'MAC' => $hub_mac_address
+            'devices_supported' => $devices_supported,
+            'devices_of_user' => $devices,
+            'MAC' => $mac,
         ]);
     }
 
@@ -94,14 +86,27 @@ class DeviceController extends Controller
     public function add(Request $request)
     {
         #attach user to device 
-        $user = User::find($request->user_id);
-        $device = Device::find($request->device_id);
-        $device->users()->attach($user->id);
-        return response()->json([
-            'success' => true,
-            'message' => 'Add Device Success',
-            'data' => $user
-        ], 200);
+        $user_id = auth()->user()->id;
+        $device_name = $request->device_name;
+        $device = Device::where('name', $device_name)->first();
+        #dd($device);
+        #find a pair with user_id and device_id in table user_device
+        $device_user = $device->users()->where('user_id', $user_id)->first();
+
+        //check if found device and this device is not attached to user return response true
+        if ($device && !$device_user) {
+            $device->users()->attach($user_id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Add Device Success',
+                'data' => $device
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Device already added',
+            ], 404);
+        }
     }
 
     public function delete($id)

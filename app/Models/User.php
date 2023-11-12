@@ -69,4 +69,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->role;
     }
+    public function devices()
+    {
+        return $this->belongsToMany(Device::class, 'user_device', 'user_id', 'device_id');
+    }
 }
