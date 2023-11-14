@@ -88,10 +88,15 @@ class DeviceController extends Controller
         #attach user to device 
         $user_id = auth()->user()->id;
         $device_name = $request->device_name;
-        $device = Device::where('name', $device_name)->first();
+        $device_category_name = $request->device_category_name;
+        $device_category = DeviceCategory::where('name', $device_category_name)->first();
+        $device_category_id = $device_category->id;
+        $device = Device::where('name', $device_name)->where('device_category_id', $device_category_id)->first();
         #dd($device);
-        #find a pair with user_id and device_id in table user_device
+        #find a pair with user_id and device_id in table user_device and device_cate
         $device_user = $device->users()->where('user_id', $user_id)->first();
+
+
 
         //check if found device and this device is not attached to user return response true
         if ($device && !$device_user) {
