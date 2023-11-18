@@ -73,7 +73,15 @@ class DeviceController extends Controller
         }
         $device_category = DeviceCategory::where('name', $request->device_category)->first();
         $device->device_category_id = $device_category->id;
-
+        $photo = '';
+        //check if user provided photo
+        if ($request->hasFile('photo')) {
+            // user time for photo name to prevent name duplication
+            $photo = time() . '.jpg';
+            // decode photo string and save to storage/profiles
+            $request->photo->move(public_path('storage/devices'), $photo);
+            $device->photo = $photo;
+        }
         $device->save();
 
         return response()->json([

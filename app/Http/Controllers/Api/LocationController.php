@@ -44,6 +44,13 @@ class LocationController extends Controller
             $query->where('user_id', Auth::user()->id);
         })->orderBy('id', 'desc')->first();
         //save hub_id in location table
+        if ($request->hasFile('photo')) {
+            // user time for photo name to prevent name duplication
+            $photo = time() . '.jpg';
+            // decode photo string and save to storage/locations
+            $request->photo->move(public_path('storage/locations'), $photo);
+            $location->photo = $photo;
+        }
         $location->save();
         //save hub_id and user_id in user_hub table
         $hub->locations()->attach($location->id);
@@ -86,7 +93,7 @@ class LocationController extends Controller
 
         //check if post has photo to delete
         if ($location->photo != '') {
-            Storage::delete('public/posts/' . $location->photo);
+            Storage::delete('public/locations/' . $location->photo);
         }
         $location->delete();
         return response()->json([

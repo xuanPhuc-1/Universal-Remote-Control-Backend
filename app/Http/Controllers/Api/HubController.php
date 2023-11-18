@@ -58,9 +58,11 @@ class HubController extends Controller
             $location = Location::where('name', $request->input('location_name'))->whereHas('users', function ($query) {
                 $query->where('user_id', Auth::user()->id);
             })->first();
-            if ($request->photo != '') {
+            if ($request->hasFile('photo')) {
+                // user time for photo name to prevent name duplication
                 $photo = time() . '.jpg';
-                file_put_contents('storage/locations/' . $photo, base64_decode($request->photo));
+                // decode photo string and save to storage/locations
+                $request->photo->move(public_path('storage/locations'), $photo);
                 $location->photo = $photo;
             }
             $hub->locations()->attach($location->id);
@@ -71,9 +73,11 @@ class HubController extends Controller
             //validate request->input('name'). If it is not unique, use that existing location name
             //select the newest hub_id from user_hub table where user_id = auth()->user()->id
             //save hub_id in location table
-            if ($request->photo != '') {
+            if ($request->hasFile('photo')) {
+                // user time for photo name to prevent name duplication
                 $photo = time() . '.jpg';
-                file_put_contents('storage/locations/' . $photo, base64_decode($request->photo));
+                // decode photo string and save to storage/locations
+                $request->photo->move(public_path('storage/locations'), $photo);
                 $location->photo = $photo;
             }
             $location->save();

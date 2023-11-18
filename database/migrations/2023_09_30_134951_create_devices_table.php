@@ -19,6 +19,7 @@ class CreateDevicesTable extends Migration
             $table->foreign("device_category_id")->references("id")->on("device_categories")->onDelete("cascade");
             $table->string("name");
             $table->json('ir_codes');
+            $table->string("photo")->default("");
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ class CreateDeviceCategoriesTable extends Migration
         Schema::create('device_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('photo')->default('');
             $table->timestamps();
         });
     }

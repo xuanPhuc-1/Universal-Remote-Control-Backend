@@ -50,7 +50,29 @@ class DeviceCategoryController extends Controller
         }
     }
 
+
     public function create(Request $request)
+    {
+        $deviceCategory = new DeviceCategory();
+        $deviceCategory->name = $request->input('device_category_name');
+        $photo = '';
+        //check if user provided photo
+        if ($request->hasFile('photo')) {
+            // user time for photo name to prevent name duplication
+            $photo = time() . '.jpg';
+            // decode photo string and save to storage/profiles
+            $request->photo->move(public_path('storage/categories'), $photo);
+            $deviceCategory->photo = $photo;
+        }
+        $deviceCategory->save();
+        //return response true to user
+        return response()->json([
+            'success' => true,
+            'data' => $deviceCategory,
+            'message' => 'Device category created'
+        ]);
+    }
+    public function add(Request $request)
     {
         $request->all();
         //check find the location id by the location_name in request
@@ -69,7 +91,6 @@ class DeviceCategoryController extends Controller
                     'message' => 'Device category not support'
                 ]);
             }
-
             $deviceCategory->save();
             $deviceCategory->locations()->attach($location->id);
         } else {
@@ -88,7 +109,7 @@ class DeviceCategoryController extends Controller
             'success' => true,
             'data' => $deviceCategory,
             'location' => $location,
-            'message' => 'Device category created'
+            'message' => 'Device category was linked to location'
         ]);
     }
 
@@ -97,6 +118,14 @@ class DeviceCategoryController extends Controller
         //update device category name
         $deviceCategory = DeviceCategory::find($id);
         $deviceCategory->name = $request->input('device_category_name');
+        $photo = '';
+        if ($request->hasFile('photo')) {
+            // user time for photo name to prevent name duplication
+            $photo = time() . '.jpg';
+            // decode photo string and save to storage/profiles
+            file_put_contents('storage/categories/' . $photo, base64_decode($request->photo));
+            $deviceCategory->photo = $photo;
+        }
         $deviceCategory->save();
         //return response true to user
         return response()->json([
