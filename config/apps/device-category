@@ -1,0 +1,11 @@
+<?php
+return [
+    'title' => 'Device Category Management',
+    'tableHeading' => 'Device Category List',
+    'Name' => 'Device Category Name',
+    'Form' => 'Device Category Registration Form',
+    'Photo' => 'Device Category Photo',
+    'CreatedAt' => 'Created At',
+    'UpdatedAt' => 'Updated At',
+    'Action' => 'Action',
+];

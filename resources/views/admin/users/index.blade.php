@@ -75,7 +75,8 @@
                                 </td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <img src="{{ $user->photo }}" alt="Avatar" class="avatar">
+                                    <img src="{{ asset('storage/profiles/' . $user->photo) }}" alt="Image"
+                                        width="100px" height="100px">
                                 </td>
                                 <td>
                                     {{ $user->role }}

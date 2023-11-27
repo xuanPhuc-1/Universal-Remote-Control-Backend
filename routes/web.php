@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\HubController;
 use App\Http\Controllers\DevicesController;
+use App\Http\Controllers\DeviceCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,14 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::get('/admin/hub/edit/{id}', [HubController::class, 'edit'])->name('admin.hubs.edit');
     Route::post('/admin/hub/update/{id}', [HubController::class, 'update'])->name('admin.hubs.update');
     Route::post('/admin/hub/delete', [HubController::class, 'destroy'])->name('admin.hubs.destroy');
+
+    //Device Category Action
+    Route::get('/admin/device-category', [DeviceCategoryController::class, 'index'])->name('admin.device-category.index');
+    Route::get('/admin/device-category/create', [DeviceCategoryController::class, 'create'])->name('admin.device-category.create');
+    Route::post('/admin/device-category/store', [DeviceCategoryController::class, 'store'])->name('admin.device-category.store');
+    Route::get('/admin/device-category/edit/{id}', [DeviceCategoryController::class, 'edit'])->name('admin.device-category.edit');
+    Route::post('/admin/device-category/update/{id}', [DeviceCategoryController::class, 'update'])->name('admin.device-category.update');
+    Route::post('/admin/device-category/delete', [DeviceCategoryController::class, 'destroy'])->name('admin.device-category.destroy');
 
     //Device Action
     Route::get('/admin/device', [DevicesController::class, 'index'])->name('admin.devices.index');
