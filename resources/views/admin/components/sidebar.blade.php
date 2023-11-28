@@ -3,7 +3,7 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                        <h1>Admin Dashboard</h1>
+                        <h1> <a href="/admin/dashboard">Admin Dashboard</a></h1>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="profile.html">Profile</a></li>
                             <li><a href="contacts.html">Contacts</a></li>

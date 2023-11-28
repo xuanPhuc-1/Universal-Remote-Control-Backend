@@ -94,4 +94,30 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('users.index')->with('success', 'User role updated successfully');
     }
+
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = "";
+            $users = DB::table('users')->where('name', 'like', '%' . $request->search . '%')->get();
+            if ($users) {
+                foreach ($users as $key => $user) {
+                    $output .= '<tr>' .
+                        // add checkbox to select user
+                        '<td><input type="checkbox" name="user_id[]" class="selectbox" value="' . $user->id . '"></td>' .
+                        '<td>' . $user->id . '</td>' .
+                        '<td>' . $user->name . '</td>' .
+                        '<td>' . $user->email . '</td>' .
+                        '<td>' . $user->photo . '</td>' .
+                        '<td>' . $user->role . '</td>' .
+                        '<td>' .
+                        '<a href="' . route('users.edit', $user->id) . '" class="btn btn-primary">Edit</a>' .
+                        '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-userid="' . $user->id . '">Delete</button>' .
+                        '</td>' .
+                        '</tr>';
+                }
+                return Response($output);
+            }
+        }
+    }
 }

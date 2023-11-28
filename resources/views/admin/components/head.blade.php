@@ -12,6 +12,11 @@
 <!-- Gritter -->
 <link href="/backend/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
+
+
 <link href="/backend/css/animate.css" rel="stylesheet">
 <link href="/backend/css/style.css" rel="stylesheet">
 <link href="/backend/css/customize.css" rel="stylesheet">
+{{-- search --}}
+
+<meta name="_token" content="{{ csrf_token() }}">

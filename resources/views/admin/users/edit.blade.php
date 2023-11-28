@@ -49,7 +49,8 @@
                     </div>
                 @else
                     <div class="m-b-sm">
-                        <img alt="image" class="img-circle" src="{{ $user->photo }}" width="128px" height="128px">
+                        <img alt="image" class="img-circle" src="{{ asset('storage/profiles/' . $user->photo) }}"
+                            width="128px" height="128px">
                     </div>
                     <p class="font-bold">{{ $user->name }}</p>
                     <div class="text-center">

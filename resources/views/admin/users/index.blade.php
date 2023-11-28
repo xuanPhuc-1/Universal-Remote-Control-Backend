@@ -38,7 +38,7 @@
                 <h5>{{ config('apps.user.tableHead') }}</h5>
                 <div class="ibox-tools">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search User">
+                        <input type="text" class="form-control" placeholder="Search User" id="search">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
                         </span>
@@ -111,3 +111,24 @@
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $('#search').on('keyup', function() {
+        var value = $(this).val();
+        $.ajax({
+            type: 'get',
+            url: '{{ route('users.search') }}',
+            data: {
+                'search': encodeURIComponent(value) // Mã hóa giá trị tìm kiếm
+            },
+            success: function(data) {
+                $('tbody').html(data);
+            }
+        });
+    })
+</script>
+
+
+<meta name="_token" content="{{ csrf_token() }}">
