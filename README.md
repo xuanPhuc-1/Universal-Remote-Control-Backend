@@ -1,40 +1,81 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Project Name
+
+## Description
+
+The **[UNIVERSAL IR REMOTE CONTROL SYSTEM]** project is an IoT (Internet of Things) system built with Laravel, designed to manage and interact with IoT devices. This system provides APIs for data collection, user management, and various tasks related to IoT.
+
+## Features
+
+-   **User Management:** Register, login, and manage user information.
+-   **Device Management:** Register, delete, and update information for IoT devices.
+-   **Data Collection:** APIs for collecting data from IoT devices.
+-   **Device Interaction:** APIs for tasks like turning devices on/off, configuring, etc.
+-   **Security:** User authentication and authorization, API protection.
 
 ## Installation
 
-```bash
-git clone
-compose install
-php artisan key:generate
-php artisan migrate
+1. **System Requirements:**
+
+    - PHP >= 7.4
+    - Composer
+    - MySQL or another database management system
+    - ...
+
+2. **Clone the Project:**
+    ```bash
+    git clone
+    ```
+3. **Install Dependencies:**
+    ```bash
+    composer install
+    ```
+4. **Generate Key:**
+    ```bash
+    php artisan key:generate
+    ```
+5. **Create Database:**
+    ```bash
+    php artisan migrate
+    ```
+6. **Publish Vendor:**
+   `bash
 php artisan vendor:publish
-pick provider number of Provider: Tymon\JWTAuth\Providers\LaravelServiceProvider
-php artisan jwt:secret
-mkdir -p storage/profiles
-php artisan storage:link
-```
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
--   [Simple, fast routing engine](https://laravel.com/docs/routing).
--   [Powerful dependency injection container](https://laravel.com/docs/container).
--   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
--   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
--   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
--   [Robust background job processing](https://laravel.com/docs/queues).
--   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+`
+   **Pick Provider number of Provider: Tymon\JWTAuth\Providers\LaravelServiceProvider**
+7. **generate screte key:**
+    ```bash
+    php artisan jwt:secret
+    ```
+8. **Create Storage Link:**
+    ```bash
+    mkdir -p storage/[folders] ex:profiles, images, ...
+    php artisan storage:link
+    ```
+9. **Run the Project:**
+    ```bash
+    php artisan serve
+    ```
 
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# Contributors
+
+-   [Ngô Lê Xuân Phúc]()
+-   [Lê Đức]()
+-   [Nguyễn Phương Nga]()
+-   [Nguyễn Huy Tú]()
+
+# Contact
+
+-   [Facebook](https://www.facebook.com/phucngo.le.5/)
+-   [Email](mailto: phuc.ngolexuan@gmail.com)
+
+# References
+
+-   [Laravel](https://laravel.com/)
+-   [JWT](https://jwt-auth.readthedocs.io/en/develop/)
+-   [UNIVERSAL IR REMOTE CONTROL SYSTEM - EMBEDDED SYSTEM](https://github.com/DuCLeK65t/Universal-IR-Remote-Control-System.git)
