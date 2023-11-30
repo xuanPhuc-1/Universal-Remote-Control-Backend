@@ -1,10 +1,10 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-# Project Name
+# UNIVERSAL IR REMOTE CONTROL SYSTEM
 
 ## Description
 
-The **[UNIVERSAL IR REMOTE CONTROL SYSTEM]** project is an IoT (Internet of Things) system built with Laravel, designed to manage and interact with IoT devices. This system provides APIs for data collection, user management, and various tasks related to IoT.
+The **UNIVERSAL IR REMOTE CONTROL SYSTEM** project is an IoT (Internet of Things) system built with Laravel, designed to manage and interact with IoT devices. This system provides APIs for data collection, user management, and various tasks related to IoT.
 
 ## Features
 
@@ -40,10 +40,10 @@ The **[UNIVERSAL IR REMOTE CONTROL SYSTEM]** project is an IoT (Internet of Thin
     php artisan migrate
     ```
 6. **Publish Vendor:**
-   `bash
-php artisan vendor:publish
-`
-   **Pick Provider number of Provider: Tymon\JWTAuth\Providers\LaravelServiceProvider**
+    ```bash
+    php artisan vendor:publish
+    ```
+    **Pick Provider number of Provider: Tymon\JWTAuth\Providers\LaravelServiceProvider**
 7. **generate screte key:**
     ```bash
     php artisan jwt:secret
@@ -64,18 +64,21 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 # Contributors
 
--   [Ngô Lê Xuân Phúc]()
--   [Lê Đức]()
--   [Nguyễn Phương Nga]()
--   [Nguyễn Huy Tú]()
+-   [Ngô Lê Xuân Phúc](https://github.com/xuanPhuc-1)
+-   [Lê Đức](https://github.com/DuCLeK65t)
+-   [Nguyễn Phương Nga](https://github.com/phuongnga28)
+-   [Nguyễn Huy Tú](https://github.com/renadayne)
+-   [Đinh Triệu Đan](https://github.com/trd02)
 
 # Contact
-
--   [Facebook](https://www.facebook.com/phucngo.le.5/)
--   [Email](mailto: phuc.ngolexuan@gmail.com)
 
 # References
 
 -   [Laravel](https://laravel.com/)
 -   [JWT](https://jwt-auth.readthedocs.io/en/develop/)
 -   [UNIVERSAL IR REMOTE CONTROL SYSTEM - EMBEDDED SYSTEM](https://github.com/DuCLeK65t/Universal-IR-Remote-Control-System.git)
+-   [UNIVERSAL IR REMOTE CONTROL SYSTEM - Mobile Application](https://github.com/xuanPhuc-1/Universal-Remote-Control-App)
+-   [Deploy Laravel Project on Raspberry Pi 4](https://github.com/aschmelyun/docker-compose-laravel)
+-   [MySQL](https://www.mysql.com/)
+-   [Postman](https://www.postman.com/)
+-   [Docker](https://www.docker.com/)
