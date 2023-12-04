@@ -5,6 +5,7 @@ return [
         // ...
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
     ],
 
     'aliases' => [

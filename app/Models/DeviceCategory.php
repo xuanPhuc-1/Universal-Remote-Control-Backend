@@ -18,4 +18,9 @@ class DeviceCategory extends Model
     {
         return $this->belongsToMany(Location::class, 'device_category_location', 'device_category_id', 'location_id');
     }
+
+    public function devices()
+    {
+        return $this->hasMany(Device::class);
+    }
 }

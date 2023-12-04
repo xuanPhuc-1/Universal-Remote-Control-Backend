@@ -1,84 +1,62 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
-# UNIVERSAL IR REMOTE CONTROL SYSTEM
+# Mobile App Name
 
 ## Description
 
-The **UNIVERSAL IR REMOTE CONTROL SYSTEM** project is an IoT (Internet of Things) system built with Laravel, designed to manage and interact with IoT devices. This system provides APIs for data collection, user management, and various tasks related to IoT.
+The **Universal-Remote-Control-App** mobile app is a web app designed to operate on mobile devices and connect to a backend built with Laravel. This app provides a user-friendly interface, allowing users to interact with services and data from your IoT system.
 
 ## Features
 
--   **User Management:** Register, login, and manage user information.
--   **Device Management:** Register, delete, and update information for IoT devices.
--   **Data Collection:** APIs for collecting data from IoT devices.
--   **Device Interaction:** APIs for tasks like turning devices on/off, configuring, etc.
--   **Security:** User authentication and authorization, API protection.
+-   **User Authentication and Registration:** Allows users to log in to the system or create a new account.
+-   **Device Management:** Displays a list of devices, device details, and the ability to interact with each device.
+-   **View IoT Data:** Displays real-time or historical data collected from IoT devices.
+-   **Execute Commands:** Allows users to perform actions such as turning devices on/off, configuring, etc.
+-   **Notifications:** Notifies users about important events or the system's status.
 
 ## Installation
 
 1. **System Requirements:**
 
-    - PHP >= 7.4
-    - Composer
-    - MySQL or another database management system
-    - ...
+    - [Node.js](https://nodejs.org/en/download/)
+    - [NPM](https://www.npmjs.com/get-npm)
+    - [Ionic](https://ionicframework.com/docs/intro/cli)
+    - [Angular](https://angular.io/guide/setup-local)
+    - [Cordova](https://cordova.apache.org/docs/en/latest/guide/cli/)
+    - [Android Studio](https://developer.android.com/studio)
+    - [Xcode](https://developer.apple.com/xcode/)
 
-2. **Clone the Project:**
-    ```bash
-    git clone
-    ```
-3. **Install Dependencies:**
-    ```bash
-    composer install
-    ```
-4. **Generate Key:**
-    ```bash
-    php artisan key:generate
-    ```
-5. **Create Database:**
-    ```bash
-    php artisan migrate
-    ```
-6. **Publish Vendor:**
-    ```bash
-    php artisan vendor:publish
-    ```
-    **Pick Provider number of Provider: Tymon\JWTAuth\Providers\LaravelServiceProvider**
-7. **generate screte key:**
-    ```bash
-    php artisan jwt:secret
-    ```
-8. **Create Storage Link:**
-    ```bash
-    mkdir -p storage/[folders] ex:profiles, images, ...
-    php artisan storage:link
-    ```
-9. **Run the Project:**
-    ```bash
-    php artisan serve
-    ```
+2. **Download the App:**
+
+    - Visit the [link] to download or experience it online.
+
+3. **Run the App:**
+    - Open a web browser and go to [URL].
+
+## Usage
+
+-   **Login:**
+
+    -   Open the app and log in with your registered account.
+
+-   **Device Management:**
+
+    -   View the list of devices and details of each device.
+    -   Interact with devices through provided functionalities.
+
+-   **View IoT Data:**
+
+    -   Access the data view page to monitor information from IoT devices.
+
+-   **Execute Commands:**
+    -   Use interactive functions to execute commands with devices.
+
+## Contribution
+
+We welcome contributions from the community. If you encounter a bug or have a suggestion, please create an **Issue**.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This mobile app is distributed under the [MIT License](LICENSE).
 
-# Contributors
+---
 
--   [Ngô Lê Xuân Phúc](https://github.com/xuanPhuc-1)
--   [Lê Đức](https://github.com/DuCLeK65t)
--   [Nguyễn Phương Nga](https://github.com/phuongnga28)
--   [Nguyễn Huy Tú](https://github.com/renadayne)
--   [Đinh Triệu Đan](https://github.com/trd02)
-
-# Contact
-
-# References
-
--   [Laravel](https://laravel.com/)
--   [JWT](https://jwt-auth.readthedocs.io/en/develop/)
--   [UNIVERSAL IR REMOTE CONTROL SYSTEM - EMBEDDED SYSTEM](https://github.com/DuCLeK65t/Universal-IR-Remote-Control-System.git)
--   [UNIVERSAL IR REMOTE CONTROL SYSTEM - Mobile Application](https://github.com/xuanPhuc-1/Universal-Remote-Control-App)
--   [Deploy Laravel Project on Raspberry Pi 4](https://github.com/aschmelyun/docker-compose-laravel)
--   [MySQL](https://www.mysql.com/)
--   [Postman](https://www.postman.com/)
--   [Docker](https://www.docker.com/)
+**Note:** This is a template and should be adjusted based on your specific app requirements.

@@ -34,7 +34,7 @@
     })
 </script>
 
-@if (isset($config['js'])) && is_array($config['js'])
+@if (isset($config['js']))
     @foreach ($config['js'] as $js)
         <script src="{{ $js }}"></script>
     @endforeach

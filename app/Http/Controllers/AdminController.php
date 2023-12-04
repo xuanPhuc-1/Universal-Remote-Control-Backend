@@ -16,9 +16,19 @@ class AdminController extends Controller
     public function dashboard()
     {
         $config = $this->config();
-        //get all user in database
+        $number_of_users = DB::table('users')->count();
+        $number_of_hubs = DB::table('hubs')->count();
+        $number_of_device_categories = DB::table('device_categories')->count();
+        $number_of_devices = DB::table('devices')->count();
         $template = 'admin.home.index';
-        return view('admin.layout')->with(['template' => $template, 'config' => $config]);
+        return view('admin.layout')->with([
+            'template' => $template,
+            'config' => $config,
+            'number_of_users' => $number_of_users,
+            'number_of_hubs' => $number_of_hubs,
+            'number_of_device_categories' => $number_of_device_categories,
+            'number_of_devices' => $number_of_devices
+        ]);
     }
     private function config()
     {

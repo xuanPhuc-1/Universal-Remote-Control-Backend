@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\HubController;
 use App\Http\Controllers\Api\DeviceController;
 use App\Http\Controllers\Api\DeviceCategoryController;
+use App\Http\Controllers\Api\MediaController as ApiMediaController;
+use App\Http\Controllers\MediaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,9 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::resource('/data', App\Http\Controllers\DataController::class);
-
-//Route::post('login', [AuthController::class, 'login']);
 
 Route::namespace('Api')->group(function () {
 
@@ -33,7 +32,6 @@ Route::namespace('Api')->group(function () {
     Route::get('login', [AuthController::class, 'loginGet'])->name('login.get');
     Route::post('signup', [AuthController::class, 'register'])->name('register.post');
     Route::get('signup', [AuthController::class, 'registerGet'])->name('register.get');
-
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('user', [AuthController::class, 'user']);
 });
@@ -42,6 +40,7 @@ Route::namespace('Api')->group(function () {
 Route::group(['middleware' => 'jwtAuth'], function () {
     //User 
     Route::post('/save_user_info', [AuthController::class, 'saveUserInfo'])->name('save_info');
+    Route::get('/get_user_info', [AuthController::class, 'getUserInfo'])->name('get_info');
 
     //Location
     Route::post('/locations/create', [LocationController::class, 'create'])->name('locations.create');
@@ -56,6 +55,7 @@ Route::group(['middleware' => 'jwtAuth'], function () {
     Route::get('/locations/{id}/device_categories', [DeviceCategoryController::class, 'index'])->name('device_categories.index');
     //Add device category to user
     Route::post('/device_categories/add', [DeviceCategoryController::class, 'add'])->name('device_categories.add');
+    Route::get('/device_categories/get_image/{filename}', [ApiMediaController::class, 'getImageDeviceCategory'])->name('device_categories.get_image');
 
 
     //Device 

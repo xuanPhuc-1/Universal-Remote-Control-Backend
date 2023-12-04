@@ -8,6 +8,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\HubController;
 use App\Http\Controllers\DevicesController;
 use App\Http\Controllers\DeviceCategoryController;
+use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +33,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('admin/login', [AuthManagerController::class, 'authenticate'])->name('admin.loginPost');
     Route::get('admin/register', [AuthManagerController::class, 'register'])->name('admin.register');
     Route::post('admin/register', [AuthManagerController::class, 'registerPost'])->name('admin.registerPost');
-
     //Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 });
 
 //admin action
 Route::group(['middleware' => 'auth:web'], function () {
+    Route::get('/admin/logs', [LogViewerController::class, 'index'])->name('admin.logs');
+
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/admin/management', [AdminController::class, 'management'])->name('management');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('profile');

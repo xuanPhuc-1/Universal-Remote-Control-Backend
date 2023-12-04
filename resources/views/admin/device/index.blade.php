@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Str;
+@endphp
+
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -73,9 +77,10 @@
                                 <td>{{ $device->id }}</td>
                                 <td>{{ $device->device_category_id }}</td>
                                 <td>{{ $device->name }}</td>
-                                <td>{{ $device->ir_codes }}</td>
+                                <td> {{ Str::limit($device->ir_codes, 50) }}</td>
+
                                 <td><img src="{{ asset('storage/devices/' . $device->photo) }}" alt="Image"
-                                        width="100px" height="100px">
+                                        width= "80px" height="50px"></td>
                                 </td>
                                 <td>{{ $device->created_at }}</td>
                                 <td>{{ $device->updated_at }}</td>

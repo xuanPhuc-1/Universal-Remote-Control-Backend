@@ -34,9 +34,11 @@ class DevicesController extends Controller
 
         $request->validate([
             'name' => 'required|unique:devices,name',
-            'ir_code' => 'required|json',
+            'ir_code' => 'required',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        //the admin upload file type json for ir_code field. so we need to read the file and save it as string
+        $ir_code = file_get_contents($request->file('ir_code'));
         if ($request->hasFile('photo')) {
             // user time for photo name to prevent name duplication
             $photo = time() . '.jpg';
@@ -46,7 +48,7 @@ class DevicesController extends Controller
         DB::table('devices')->insert([
             'device_category_id' => $request->input('device_category_id'),
             'name' => $request->input('name'),
-            'ir_codes' => $request->input('ir_code'),
+            'ir_codes' => $ir_code,
             'photo' => $photo,
             'created_at' => now(),
             'updated_at' => now(),

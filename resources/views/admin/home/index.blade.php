@@ -3,53 +3,45 @@
         <div class="col-lg-3">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <span class="label label-success pull-right">Monthly</span>
-                    <h5>User Activity</h5>
+                    <span class="label label-success pull-right">Joined</span>
+                    <h5>Number of Users</h5>
                 </div>
                 <div class="ibox-content">
-                    <h1 class="no-margins">#Number of online User</h1>
-                    <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                    <small>Total income</small>
+                    <h1 class="no-margins">{{ $number_of_users }}</h1>
+                    <div class="stat-percent font-bold text-success">Increasing <i class="fa fa-bolt"></i></div>
                 </div>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <span class="label label-primary pull-right">Today</span>
-                    <h5>visits</h5>
+                    <span class="label label-primary pull-right">Supported</span>
+                    <h5>Number of Device Categories</h5>
                 </div>
                 <div class="ibox-content">
-                    <h1 class="no-margins">#Number of visitor</h1>
-                    <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
-                    <small>New visits</small>
+                    <h1 class="no-margins">{{ $number_of_device_categories }}</h1>
                 </div>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <span class="label label-danger pull-right">Low value</span>
-                    <h5>Hub activity</h5>
+                    <span class="label label-danger pull-right">Online</span>
+                    <h5>Number of Hubs</h5>
                 </div>
                 <div class="ibox-content">
-                    <h1 class="no-margins">#Number of online Hub</h1>
-                    <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i>
-                    </div>
-                    <small>In first month</small>
+                    <h1 class="no-margins">{{ $number_of_hubs }} </h1>
                 </div>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <span class="label label-info pull-right">Annual</span>
-                    <h5>Orders</h5>
+                    <span class="label label-info pull-right">Subcribed</span>
+                    <h5>Number of Devices</h5>
                 </div>
                 <div class="ibox-content">
-                    <h1 class="no-margins">275,800</h1>
-                    <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-                    <small>New orders</small>
+                    <h1 class="no-margins">{{ $number_of_devices }}</h1>
                 </div>
             </div>
         </div>
@@ -57,375 +49,116 @@
 
     </div>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Orders</h5>
-                    <div class="pull-right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-xs btn-white active">Today</button>
-                            <button type="button" class="btn btn-xs btn-white">Monthly</button>
-                            <button type="button" class="btn btn-xs btn-white">Annual</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <div class="flot-chart">
-                                <div class="flot-chart-content" id="flot-dashboard-chart"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <ul class="stat-list">
-                                <li>
-                                    <h2 class="no-margins">2,346</h2>
-                                    <small>Total orders in period</small>
-                                    <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i>
-                                    </div>
-                                    <div class="progress progress-mini">
-                                        <div style="width: 48%;" class="progress-bar"></div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h2 class="no-margins ">4,422</h2>
-                                    <small>Orders in last month</small>
-                                    <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i>
-                                    </div>
-                                    <div class="progress progress-mini">
-                                        <div style="width: 60%;" class="progress-bar"></div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <h2 class="no-margins ">9,180</h2>
-                                    <small>Monthly income from orders</small>
-                                    <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i>
-                                    </div>
-                                    <div class="progress progress-mini">
-                                        <div style="width: 22%;" class="progress-bar"></div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="col-lg-6">
+            <canvas id="lineChart" width="400" height="200"></canvas>
+        </div>
+        <div class="col-lg-6">
+            <canvas id="barChart" width="400" height="200"></canvas>
         </div>
     </div>
-
-
+    <br>
     <div class="row">
-        <div class="col-lg-4">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Messages</h5>
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="ibox-content ibox-heading">
-                    <h3><i class="fa fa-envelope-o"></i> New messages</h3>
-                    <small><i class="fa fa-tim"></i> You have 22 new messages and 16 waiting in draft
-                        folder.</small>
-                </div>
-                <div class="ibox-content">
-                    <div class="feed-activity-list">
 
-                        <div class="feed-element">
-                            <div>
-                                <small class="pull-right text-navy">1m ago</small>
-                                <strong>Monica Smith</strong>
-                                <div>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry. Lorem Ipsum</div>
-                                <small class="text-muted">Today 5:60 pm - 12.06.2014</small>
-                            </div>
-                        </div>
-
-                        <div class="feed-element">
-                            <div>
-                                <small class="pull-right">2m ago</small>
-                                <strong>Jogn Angel</strong>
-                                <div>There are many variations of passages of Lorem Ipsum available</div>
-                                <small class="text-muted">Today 2:23 pm - 11.06.2014</small>
-                            </div>
-                        </div>
-
-                        <div class="feed-element">
-                            <div>
-                                <small class="pull-right">5m ago</small>
-                                <strong>Jesica Ocean</strong>
-                                <div>Contrary to popular belief, Lorem Ipsum</div>
-                                <small class="text-muted">Today 1:00 pm - 08.06.2014</small>
-                            </div>
-                        </div>
-
-                        <div class="feed-element">
-                            <div>
-                                <small class="pull-right">5m ago</small>
-                                <strong>Monica Jackson</strong>
-                                <div>The generated Lorem Ipsum is therefore </div>
-                                <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
-                            </div>
-                        </div>
-
-
-                        <div class="feed-element">
-                            <div>
-                                <small class="pull-right">5m ago</small>
-                                <strong>Anna Legend</strong>
-                                <div>All the Lorem Ipsum generators on the Internet tend to repeat </div>
-                                <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
-                            </div>
-                        </div>
-                        <div class="feed-element">
-                            <div>
-                                <small class="pull-right">5m ago</small>
-                                <strong>Damian Nowak</strong>
-                                <div>The standard chunk of Lorem Ipsum used </div>
-                                <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
-                            </div>
-                        </div>
-                        <div class="feed-element">
-                            <div>
-                                <small class="pull-right">5m ago</small>
-                                <strong>Gary Smith</strong>
-                                <div>200 Latin words, combined with a handful</div>
-                                <small class="text-muted">Yesterday 8:48 pm - 10.06.2014</small>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-8">
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>User project list</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <table class="table table-hover no-margins">
-                                <thead>
-                                    <tr>
-                                        <th>Status</th>
-                                        <th>Date</th>
-                                        <th>User</th>
-                                        <th>Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><small>Pending...</small></td>
-                                        <td><i class="fa fa-clock-o"></i> 11:20pm</td>
-                                        <td>Samantha</td>
-                                        <td class="text-navy"> <i class="fa fa-level-up"></i> 24% </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="label label-warning">Canceled</span> </td>
-                                        <td><i class="fa fa-clock-o"></i> 10:40am</td>
-                                        <td>Monica</td>
-                                        <td class="text-navy"> <i class="fa fa-level-up"></i> 66% </td>
-                                    </tr>
-                                    <tr>
-                                        <td><small>Pending...</small> </td>
-                                        <td><i class="fa fa-clock-o"></i> 01:30pm</td>
-                                        <td>John</td>
-                                        <td class="text-navy"> <i class="fa fa-level-up"></i> 54% </td>
-                                    </tr>
-                                    <tr>
-                                        <td><small>Pending...</small> </td>
-                                        <td><i class="fa fa-clock-o"></i> 02:20pm</td>
-                                        <td>Agnes</td>
-                                        <td class="text-navy"> <i class="fa fa-level-up"></i> 12% </td>
-                                    </tr>
-                                    <tr>
-                                        <td><small>Pending...</small> </td>
-                                        <td><i class="fa fa-clock-o"></i> 09:40pm</td>
-                                        <td>Janet</td>
-                                        <td class="text-navy"> <i class="fa fa-level-up"></i> 22% </td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="label label-primary">Completed</span> </td>
-                                        <td><i class="fa fa-clock-o"></i> 04:10am</td>
-                                        <td>Amelia</td>
-                                        <td class="text-navy"> <i class="fa fa-level-up"></i> 66% </td>
-                                    </tr>
-                                    <tr>
-                                        <td><small>Pending...</small> </td>
-                                        <td><i class="fa fa-clock-o"></i> 12:08am</td>
-                                        <td>Damian</td>
-                                        <td class="text-navy"> <i class="fa fa-level-up"></i> 23% </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Small todo list</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <ul class="todo-list m-t small-list">
-                                <li>
-                                    <a href="#" class="check-link"><i class="fa fa-check-square"></i> </a>
-                                    <span class="m-l-xs todo-completed">Buy a milk</span>
-
-                                </li>
-                                <li>
-                                    <a href="#" class="check-link"><i class="fa fa-square-o"></i>
-                                    </a>
-                                    <span class="m-l-xs">Go to shop and find some products.</span>
-
-                                </li>
-                                <li>
-                                    <a href="#" class="check-link"><i class="fa fa-square-o"></i>
-                                    </a>
-                                    <span class="m-l-xs">Send documents to Mike</span>
-                                    <small class="label label-primary"><i class="fa fa-clock-o"></i> 1
-                                        mins</small>
-                                </li>
-                                <li>
-                                    <a href="#" class="check-link"><i class="fa fa-square-o"></i>
-                                    </a>
-                                    <span class="m-l-xs">Go to the doctor dr Smith</span>
-                                </li>
-                                <li>
-                                    <a href="#" class="check-link"><i class="fa fa-check-square"></i> </a>
-                                    <span class="m-l-xs todo-completed">Plan vacation</span>
-                                </li>
-                                <li>
-                                    <a href="#" class="check-link"><i class="fa fa-square-o"></i>
-                                    </a>
-                                    <span class="m-l-xs">Create new stuff</span>
-                                </li>
-                                <li>
-                                    <a href="#" class="check-link"><i class="fa fa-square-o"></i>
-                                    </a>
-                                    <span class="m-l-xs">Call to Anna for dinner</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Transactions worldwide</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <table class="table table-hover margin bottom">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 1%" class="text-center">No.</th>
-                                                <th>Transaction</th>
-                                                <th class="text-center">Date</th>
-                                                <th class="text-center">Amount</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-center">1</td>
-                                                <td> Security doors
-                                                </td>
-                                                <td class="text-center small">16 Jun 2014</td>
-                                                <td class="text-center"><span
-                                                        class="label label-primary">$483.00</span></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">2</td>
-                                                <td> Wardrobes
-                                                </td>
-                                                <td class="text-center small">10 Jun 2014</td>
-                                                <td class="text-center"><span
-                                                        class="label label-primary">$327.00</span></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">3</td>
-                                                <td> Set of tools
-                                                </td>
-                                                <td class="text-center small">12 Jun 2014</td>
-                                                <td class="text-center"><span
-                                                        class="label label-warning">$125.00</span></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">4</td>
-                                                <td> Panoramic pictures</td>
-                                                <td class="text-center small">22 Jun 2013</td>
-                                                <td class="text-center"><span
-                                                        class="label label-primary">$344.00</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">5</td>
-                                                <td>Phones</td>
-                                                <td class="text-center small">24 Jun 2013</td>
-                                                <td class="text-center"><span
-                                                        class="label label-primary">$235.00</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">6</td>
-                                                <td>Monitors</td>
-                                                <td class="text-center small">26 Jun 2013</td>
-                                                <td class="text-center"><span
-                                                        class="label label-primary">$100.00</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div id="world-map" style="height: 300px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
+        <canvas id="weatherChart" width="400" height="200"></canvas>
 
     </div>
 </div>
+<!-- Thêm thư viện Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ asset('/frontend/js/weather.js') }}"></script>
+<script>
+    // Tạo dữ liệu ngẫu nhiên
+    function generateRandomData() {
+        return Array.from({
+            length: 7
+        }, () => Math.floor(Math.random() * 50) + 10);
+    }
+
+    // Lấy canvas và context cho Line Chart
+    var lineCanvas = document.getElementById('lineChart');
+    var lineContext = lineCanvas.getContext('2d');
+
+    // Lấy canvas và context cho Bar Chart
+    var barCanvas = document.getElementById('barChart');
+    var barContext = barCanvas.getContext('2d');
+
+    // Tạo đồ thị Line Chart
+    var lineChart = new Chart(lineContext, {
+        type: 'line',
+        data: {
+            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            datasets: [{
+                label: 'Access Times',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                data: generateRandomData(),
+            }]
+        },
+    });
+
+    // Tạo đồ thị Bar Chart
+    var barChart = new Chart(barContext, {
+        type: 'bar',
+        data: {
+            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            datasets: [{
+                label: 'Working Time',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+                data: generateRandomData(),
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        },
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+    function drawChart(temperature, humidity) {
+        const ctx = document.getElementById('weatherChart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Temperature', 'Humidity'],
+                datasets: [{
+                    label: 'Weather in Hanoi',
+                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+                    borderWidth: 1,
+                    data: [temperature, humidity],
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                responsive: true,
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        fontColor: 'black', // Đổi màu chữ của legend
+                    },
+                },
+                plugins: {
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        color: 'black', // Đổi màu chữ của giá trị trên biểu đồ
+                        formatter: function(value, context) {
+                            return value; // Hiển thị giá trị của thanh trên biểu đồ
+                        }
+                    }
+                }
+            }
+        });
+    }
+</script>

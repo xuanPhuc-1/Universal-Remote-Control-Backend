@@ -46,7 +46,14 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">IR Code (JSON)</label>
                         <div class="col-sm-10">
-                            <textarea name="ir_code" class="form-control" placeholder="IR Code (JSON)" required></textarea>
+                            {{-- use input file with a text view type json --}}
+                            <input type="file" name="ir_code" id="irCodeInput" class="form-control"
+                                accept="application/json" required>
+
+                        </div>
+                        {{-- a textview of json file when upload file succesfully --}}
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <textarea class="form-control" rows="10" id="ir_code" name="ir_code" readonly></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -67,3 +74,29 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Add change event listener to the file input
+        $('#irCodeInput').change(function() {
+            // Get the selected file
+            var file = this.files[0];
+
+            // Check if a file is selected
+            if (file) {
+                // Create a FileReader
+                var reader = new FileReader();
+
+                // Set a callback function to handle the file reading
+                reader.onload = function(e) {
+                    // Update the textarea with the content of the file
+                    $('#ir_code').val(e.target.result);
+                };
+
+                // Read the file as text
+                reader.readAsText(file);
+            }
+        });
+    });
+</script>

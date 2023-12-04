@@ -28,18 +28,17 @@ class DeviceCategoryController extends Controller
         $deviceCategories = DeviceCategory::whereHas('locations', function ($query) use ($id) {
             $query->where('location_id', $id);
         })->get();
-        //get all devices of device category
-        $devices = Device::where('device_category_id', $id)->get();
+
         //check if location has hub attached or not
         $location = Location::find($id);
         $hub = Hub::whereHas('locations', function ($query) use ($id) {
             $query->where('location_id', $id);
         })->first();
+
         if ($hub) {
             return response()->json([
                 'success' => true,
                 'data' => $deviceCategories,
-                'devices' => $devices,
                 'sensor' => $sensors,
             ]);
         } else {
@@ -49,8 +48,6 @@ class DeviceCategoryController extends Controller
             ]);
         }
     }
-
-
     public function create(Request $request)
     {
         $deviceCategory = new DeviceCategory();

@@ -11,6 +11,7 @@ use League\Flysystem\Adapter\Local;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Response;
 
 class LocationController extends Controller
 {
