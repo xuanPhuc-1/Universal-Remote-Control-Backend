@@ -7,6 +7,7 @@ use App\Models\Device;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\DeviceCategory;
 
 class DevicesController extends Controller
 {
@@ -25,20 +26,12 @@ class DevicesController extends Controller
     }
     public function store(Request $request)
     {
-        #check if the category_id and name is exist, move to update
-        $device = DB::table('devices')->where('device_category_id', $request->input('device_category_id'))->where('name', $request->input('name'))->first();
-        if ($device) {
-            #redirect to update with id of device
-            return redirect()->route('admin.devices.index')->with('error', 'Device already exist.');
+        $json = file_get_contents($request->ir_code);
+        if (!DeviceCategory::where('id', $request->device_category_id)->first()) {
+            return redirect()->route('admin.devices.index')->with('error', 'Device category not exist.');
         }
-
-        $request->validate([
-            'name' => 'required|unique:devices,name',
-            'ir_code' => 'required',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        //the admin upload file type json for ir_code field. so we need to read the file and save it as string
-        $ir_code = file_get_contents($request->file('ir_code'));
+        $photo = '';
+        //check if user provided photo
         if ($request->hasFile('photo')) {
             // user time for photo name to prevent name duplication
             $photo = time() . '.jpg';
@@ -48,7 +41,7 @@ class DevicesController extends Controller
         DB::table('devices')->insert([
             'device_category_id' => $request->input('device_category_id'),
             'name' => $request->input('name'),
-            'ir_codes' => $ir_code,
+            'ir_codes' => $json,
             'photo' => $photo,
             'created_at' => now(),
             'updated_at' => now(),

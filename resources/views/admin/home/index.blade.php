@@ -16,7 +16,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <span class="label label-primary pull-right">Supported</span>
-                    <h5>Number of Device Categories</h5>
+                    <h5>Number of Categories</h5>
                 </div>
                 <div class="ibox-content">
                     <h1 class="no-margins">{{ $number_of_device_categories }}</h1>
