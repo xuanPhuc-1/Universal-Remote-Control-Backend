@@ -55,64 +55,21 @@
 
     <section id="home-section" class="hero">
         <div class="home-slider owl-carousel">
-            <div class="slider-item" style="background-image: url(/frontend/images/tu-duc-chien.jpg)">
+            <div class="slider-item" style="background-image: url(/frontend/images/iot.jpg)">
                 <div class="overlay"></div>
             </div>
 
-            <div class="slider-item" style="background-image: url(/frontend/images/silicon.jpg)">
+            <div class="slider-item" style="background-image: url(/frontend/images/iot1.jpg)">
                 <div class="overlay"></div>
             </div>
+
+
         </div>
     </section>
 
     <section class="ftco-section">
         <div class="container">
-            <div class="row no-gutters ftco-services">
-                <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-                    <div class="media block-6 services mb-md-0 mb-4">
-                        <div class="icon bg-color-1 active d-flex justify-content-center align-items-center mb-2">
-                            <span class="flaticon-shipped"></span>
-                        </div>
-                        <div class="media-body">
-                            <h3 class="heading">Free Shipping</h3>
-                            <span>On order over $100</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-                    <div class="media block-6 services mb-md-0 mb-4">
-                        <div class="icon bg-color-2 d-flex justify-content-center align-items-center mb-2">
-                            <span class="flaticon-diet"></span>
-                        </div>
-                        <div class="media-body">
-                            <h3 class="heading">Always Fresh</h3>
-                            <span>Product well package</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-                    <div class="media block-6 services mb-md-0 mb-4">
-                        <div class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
-                            <span class="flaticon-award"></span>
-                        </div>
-                        <div class="media-body">
-                            <h3 class="heading">Superior Quality</h3>
-                            <span>Quality Products</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-                    <div class="media block-6 services mb-md-0 mb-4">
-                        <div class="icon bg-color-4 d-flex justify-content-center align-items-center mb-2">
-                            <span class="flaticon-customer-service"></span>
-                        </div>
-                        <div class="media-body">
-                            <h3 class="heading">Support</h3>
-                            <span>24/7 Support</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -139,7 +96,7 @@
                                 </div>
                             </div>
                             <div class="category-wrap ftco-animate img d-flex align-items-end"
-                                style="background-image: url(/frontend/images/server.png)">
+                                style="background-image: url(/frontend/images/rasp.png)">
                                 <div class="text px-3 py-1">
                                     <h2 class="mb-0"><a href="#">Server</a></h2>
                                 </div>
@@ -190,7 +147,8 @@
                                 </div>
                                 <div class="text text-center">
                                     <p class="mb-5 pl-4 line">
-                                        Job Details....
+                                        System design, PCB layout, embedded programming, database design, operation
+                                        scripting, and Port Forwarding configuration support.
                                     </p>
                                     <p class="name">Le Duc</p>
                                     <span class="position">Embedded</span>
@@ -207,7 +165,7 @@
                                 </div>
                                 <div class="text text-center">
                                     <p class="mb-5 pl-4 line">
-                                        Job Details....
+                                        Web design, User Interface design
                                     </p>
                                     <p class="name">Nguyen Huy Tu</p>
                                     <span class="position">Server</span>
@@ -224,7 +182,9 @@
                                 </div>
                                 <div class="text text-center">
                                     <p class="mb-5 pl-4 line">
-                                        Job Details....
+                                        Server architecture, database design, IT infrastructure maintenance, API/UI
+                                        design, operation scripting, infrared decoding, and Mobile App programming
+                                        support.
                                     </p>
                                     <p class="name">Ngo Le Xuan Phuc</p>
                                     <span class="position">Server</span>
@@ -236,15 +196,14 @@
                     <div class="carousel-testimony owl-carousel" style="margin-left: 17%">
                         <div class="item">
                             <div class="testimony-wrap pb-5" style="margin-left: 8px; margin-right: 10px">
-                                <div class="user-img mb-5"
-                                    style="background-image: url(/frontend/images/nga-nguyen.png)">
+                                <div class="user-img mb-5" style="background-image: url(/frontend/images/nga.jpg)">
                                     <span class="quote d-flex align-items-center justify-content-center">
                                         <i class="icon-quote-left"></i>
                                     </span>
                                 </div>
                                 <div class="text text-center">
                                     <p class="mb-5 pl-4 line">
-                                        Job Details....
+                                        Mobile App operation workflow design, UI design, and backend programming.
                                     </p>
                                     <p class="name">Phuong Nga Nguyen</p>
                                     <span class="position">Mobile App</span>
@@ -261,7 +220,7 @@
                                 </div>
                                 <div class="text text-center">
                                     <p class="mb-5 pl-4 line">
-                                        Job Details....
+                                        Programming communication interface for Mobile App.
                                     </p>
                                     <p class="name">Dinh Trieu Dan</p>
                                     <span class="position">Mobile App</span>
