@@ -9,16 +9,16 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy Laravel Application') {
             steps {
-                script {
-                    // Thực hiện các bước triển khai lên máy chủ với tài khoản và mật khẩu
-                    sshagent(['iot']) {
-                        sh 'ssh pi@iotdomain.giize.com "cd ~/docker-compose-laravel/Universal-Remote-Control-Backend && git pull origin master"'
-                    }
-                }
+                // Replace 'ssh-credentials-id' with your SSH credentials ID in Jenkins
+                sshagent(['pi']) {
+                    // Replace 'your-deployment-server' with your server's IP or domain
+                    sh "ssh iotdomain.giize.com 'cd ~/docker-compose-laravel/Universal-Remote-Control-Backend && git pull origin master'"
                 }
             }
         }
     }
+}
+    
 
