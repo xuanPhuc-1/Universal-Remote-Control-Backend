@@ -13,8 +13,9 @@ pipeline {
             steps {
                 script {
                     // Thực hiện các bước triển khai lên máy chủ với tài khoản và mật khẩu
-                    sshagent(['pi']) {
-                    sh 'ssh -o StrictHostKeyChecking=no pi@iotdomain.giize.com "cd ~/docker-compose-laravel/Universal-Remote-Control-Backend && git pull"'
+                    sshagent(['pi-iot']) {
+                        sh 'ssh pi@iotdomain.giize.com "cd ~/docker-compose-laravel/Universal-Remote-Control-Backend && git pull"'
+                    }
                 }
                 }
             }
