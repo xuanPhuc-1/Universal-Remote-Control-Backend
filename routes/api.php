@@ -21,6 +21,8 @@ use App\Http\Controllers\MediaController;
 |
 */
 
+//MediaStorage
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
