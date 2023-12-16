@@ -11,9 +11,11 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // Thực hiện các bước triển khai lên máy chủ với tài khoản và mật khẩu
                 script {
-                    sh 'sshpass -p "leduc" ssh pi@iotdomain@giize.com "cd ~/docker-compose-laravel/Universal-Remote-Control-Backend && git pull"'
+                    // Thực hiện các bước triển khai lên máy chủ với tài khoản và mật khẩu
+                    sshagent(['pi']) {
+                        sh 'ssh pi@iotdomain.giize.com "cd ~/docker-compose-laravel/Universal-Remote-Control-Backend && git pull"'
+                    }
                 }
             }
         }
