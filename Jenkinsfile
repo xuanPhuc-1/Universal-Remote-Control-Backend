@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout mã nguồn từ GitHub
-                git 'https://github.com/your-username/your-repository.git'
+                git 'https://github.com/xuanPhuc-1/Universal-Remote-Control-Backend.git'
             }
         }
 
