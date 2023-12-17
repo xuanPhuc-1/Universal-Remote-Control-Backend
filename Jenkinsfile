@@ -4,19 +4,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout mã nguồn từ Git
-                git 'https://github.com/xuanPhuc-1/Universal-Remote-Control-Backend.git'
+                // Checkout mã nguồn từ GitHub
+                git 'https://github.com/your-username/your-repository.git'
             }
         }
 
-        stage('Update Source Code') {
+        stage('Deploy') {
             steps {
-                //update source code for backend
+                // Thực hiện các bước triển khai sau khi đã checkout mã nguồn
                 sh 'ls -la'
-                sh 'echo "$PWD"'
+                // Thêm các bước triển khai khác nếu cần
             }
         }
-
-        
     }
 }
