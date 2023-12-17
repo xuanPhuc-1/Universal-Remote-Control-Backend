@@ -1,5 +1,6 @@
 pipeline {
-    agent any
+    //run on agent with label 'iot'
+    agent { label 'iot' }
 
     stages {
         stage('Checkout') {
@@ -11,9 +12,9 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // Thực hiện các bước triển khai sau khi đã checkout mã nguồn
-                sh 'ls -la'
-                // Thêm các bước triển khai khác nếu cần
+                // Cho agent cap nhat source code
+                sh 'git pull origin master'
+                echo 'Deploying....'
             }
         }
     }
