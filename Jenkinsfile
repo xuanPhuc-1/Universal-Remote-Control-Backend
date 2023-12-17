@@ -17,6 +17,7 @@ pipeline {
                     //run command on server
                     sh 'ls -la'
                     sh 'cat Jenkinsfile'
+                    sh 'echo "$PWD"'
                 }
 
             }
