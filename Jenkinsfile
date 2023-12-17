@@ -9,17 +9,11 @@ pipeline {
             }
         }
 
-        stage('Deploy Laravel Application') {
+        stage('Update Source Code') {
             steps {
-                //use ssh agent to connet to server with credential id 54dabf6c-3ab9-4af2-b1df-63b01188d4a5
-                sshagent(['54dabf6c-3ab9-4af2-b1df-63b01188d4a5']) {
-                    echo 'ssh Success'
-                    //run command on server
-                    sh 'ls -la'
-                    sh 'cat Jenkinsfile'
-                    sh 'echo "$PWD"'
-                }
-
+                //update source code for backend
+                sh 'ls -la'
+                sh 'echo "$PWD"'
             }
         }
 
