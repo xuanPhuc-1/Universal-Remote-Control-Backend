@@ -14,7 +14,7 @@ pipeline {
             steps {
                 // Cho agent cap nhat source code
                 sh 'git pull origin master'
-                echo 'Deploying....'
+                echo 'Deploying...'
             }
         }
     }
