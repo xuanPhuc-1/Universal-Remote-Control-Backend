@@ -16,6 +16,7 @@ pipeline {
                     echo 'ssh Success'
                     //run command on server
                     sh 'ls -la'
+                    sh 'cat Jenkinsfile'
                 }
 
             }
