@@ -11,10 +11,15 @@ pipeline {
 
         stage('Deploy Laravel Application') {
             steps {
-                echo 'Deploying Laravel Application...'
+                //use ssh agent to connet to server with credential id 54dabf6c-3ab9-4af2-b1df-63b01188d4a5
+                sshagent(['54dabf6c-3ab9-4af2-b1df-63b01188d4a5']) {
+                    //run command on server
+                    sh 'cd ~/docker-compose-laravel/Universal-Remote-Control-Backend && git pull origin master'
+                    echo 'Deploy Success'
+                }
             }
         }
+
+        
     }
 }
-    
-
