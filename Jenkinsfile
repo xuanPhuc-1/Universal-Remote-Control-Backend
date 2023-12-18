@@ -38,17 +38,13 @@ pipeline {
                 script {
                     // Install dependencies using Composer
                     sh "${COMPOSER_PATH} install --no-interaction --prefer-dist"
-
-                    // Run any additional setup or configuration steps
-
                     // Run Composer dump-autoload and Laravel migration
                     sh "${COMPOSER_PATH} dump-autoload --optimize"
-                    sh "php artisan migrate --force"
+                    //Fail because of the mysql server is not running
+                    //sh "php artisan migrate --force"
                     echo 'Successfully deployed'
                 }
             }
         }
-
-        // Add additional stages for your application build and deployment
     }
 }

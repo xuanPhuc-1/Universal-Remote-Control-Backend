@@ -21,11 +21,11 @@ cd /tmp
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
-# Install MySQL 8.0
-yum install mysql-server -y
-systemctl start mysqld
-systemctl enable mysqld
-systemctl status mysqld
+# # Install MySQL 8.0
+# yum install mysql-server -y
+# systemctl start mysqld
+# systemctl enable mysqld
+# systemctl status mysqld
 
 
 # Clean up
