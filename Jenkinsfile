@@ -9,7 +9,7 @@ pipeline {
             }
         }
 
-        stage('Deploy Laravel Application') {
+        stage('Check Laravel Application') {
             steps {
                 echo 'Deploying Laravel Application...'
             }
