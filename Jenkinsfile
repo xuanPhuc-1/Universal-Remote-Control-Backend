@@ -8,17 +8,53 @@ pipeline {
     }
 
     stages {
-        stage('Check Laravel Application') {
+        stage('Update Source Code') {
             steps {
                 script {
                     try {
                         git credentialsId: GIT_CREDENTIALS_ID, url: GIT_REPO_URL
                         sh "git pull origin ${GIT_BRANCH}"
-                        echo 'Successfully checked the Laravel Application'
+                        echo 'Successfully update source code'
                     } catch (Exception e) {
-                        error("Failed to check the Laravel Application: ${e.message}")
+                        error("Failed to update: ${e.message}")
                     }
                 }
+            }
+        }
+        stage('Preparation') {
+            steps {
+                script {
+                    sh 'cd /home/jenkins/workspace/UpdateCodeJob'
+                    sh './install_components.sh'
+                }
+            }
+        }
+        stage('Build and Deploy') {
+            steps {
+                script {
+                    // Add your deployment steps here
+                    // For example, clone the repository or copy the source code to the desired location
+
+                    // Assuming you've cloned the repository to /path/to/your/app
+                    sh 'cd /home/jenkins/workspace/UpdateCodeJob'
+
+                    // Install dependencies using Composer
+                    sh "${COMPOSER_PATH} install --no-interaction --prefer-dist"
+
+                    // Run any additional setup or configuration steps
+
+                    // Run Composer dump-autoload and Laravel migration
+                    sh "${COMPOSER_PATH} dump-autoload --optimize"
+                    sh "php artisan migrate --force"
+                    echo 'Successfully deployed'
+                }
+            }
+        }
+
+        // Add additional stages for your application build and deployment
+        stage('Build and Deploy Laravel App') {
+            steps {
+                // Add your Laravel build and deployment steps here
             }
         }
     }
