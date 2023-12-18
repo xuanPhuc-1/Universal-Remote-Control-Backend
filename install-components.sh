@@ -1,4 +1,5 @@
 #!/bin/bash
+#check if remi-php82, epel-release, mysql-community-server, php, php-mbstring, php-xml, php-pdo, php-pdo_mysql, php-xdebug, composer are installed or not and install them if not installed
 
 # Install EPEL repository
 yum -y install epel-release

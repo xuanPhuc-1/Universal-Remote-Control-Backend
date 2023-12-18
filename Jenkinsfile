@@ -5,6 +5,7 @@ pipeline {
         GIT_REPO_URL = 'https://github.com/xuanPhuc-1/Universal-Remote-Control-Backend.git'
         GIT_CREDENTIALS_ID = '3882ac5f-eb39-422e-81ab-e29e9f84ab33'
         GIT_BRANCH = 'master'
+        COMPOSER_PATH = '/usr/local/bin/composer'
     }
 
     stages {
