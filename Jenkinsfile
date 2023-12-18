@@ -6,7 +6,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout GitHub source code
-                git 'https://github.com/xuanPhuc-1/Universal-Remote-Control-Backend.git'
+                git credentialsId: '14e38fce-6699-4e83-adbd-3922e615dced', url: 'https://github.com/xuanPhuc-1/Universal-Remote-Control-Backend.git'
             }
         }
 
