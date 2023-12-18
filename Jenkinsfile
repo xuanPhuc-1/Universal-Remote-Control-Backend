@@ -24,7 +24,6 @@ pipeline {
         stage('Preparation') {
             steps {
                 script {
-                    sh 'cd workspace/UpdateCodeJob'
                     sh './install_components.sh'
                 }
             }
@@ -32,12 +31,6 @@ pipeline {
         stage('Build and Deploy') {
             steps {
                 script {
-                    // Add your deployment steps here
-                    // For example, clone the repository or copy the source code to the desired location
-
-                    // Assuming you've cloned the repository to /path/to/your/app
-                    sh 'cd workspace/UpdateCodeJob'
-
                     // Install dependencies using Composer
                     sh "${COMPOSER_PATH} install --no-interaction --prefer-dist"
 
