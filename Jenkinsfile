@@ -19,8 +19,6 @@ pipeline {
                 sh 'pwd'
                 //echo list file and folder in current directory
                 sh 'ls -la'
-                //echo list file and folder in current directory
-                sh 'ls -la'
             }
         }
     }
