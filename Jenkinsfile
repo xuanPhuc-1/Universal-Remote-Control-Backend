@@ -25,6 +25,10 @@ pipeline {
             steps {
                 script {
                     sh 'pwd'
+                    //run the install_components.sh script
+                    sh 'chmod +x ./install_components.sh'
+                    sh './install_components.sh'
+                    echo 'Successfully install components'
                 }
             }
         }
