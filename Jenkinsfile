@@ -26,7 +26,7 @@ pipeline {
                 script {
                     sh 'pwd'
                     //run the install_components.sh script
-                    sh 'chmod +x ./install-components.sh'
+                    sh 'chmod 777 ./install-components.sh'
                     sh './install-components.sh'
                     echo 'Successfully install components'
                 }
