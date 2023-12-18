@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'CentOS' }
+    agent { label 'my-slave-CentOS7' }
 
     environment {
         GIT_REPO_URL = 'https://github.com/xuanPhuc-1/Universal-Remote-Control-Backend.git'
