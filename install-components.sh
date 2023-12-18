@@ -20,6 +20,11 @@ cd /tmp
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
+# Install MySQL 8.0
+yum install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm -y
+yum install mysql-community-server -y
+
+
 # Clean up
 rm -rf /tmp/*
 
