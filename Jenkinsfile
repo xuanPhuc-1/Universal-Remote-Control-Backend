@@ -52,10 +52,5 @@ pipeline {
         }
 
         // Add additional stages for your application build and deployment
-        stage('Build and Deploy Laravel App') {
-            steps {
-                // Add your Laravel build and deployment steps here
-            }
-        }
     }
 }
