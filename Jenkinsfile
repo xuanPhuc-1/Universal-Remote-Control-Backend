@@ -17,7 +17,8 @@ pipeline {
                 echo 'Pull source code from GitHub successfully'
                 //echo Current directory
                 sh 'pwd'
-
+                //echo list file and folder in current directory
+                sh 'ls -la'
             }
         }
     }
