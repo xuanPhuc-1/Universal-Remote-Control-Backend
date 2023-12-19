@@ -1,4 +1,5 @@
 pipeline {
+    //only Slave with label 'my-slave-CentOS7' can run this pipeline
     agent { label 'my-slave-CentOS7' }
 
     environment {
@@ -13,7 +14,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        git credentialsId: GIT_CREDENTIALS_ID, url: GIT_REPO_URL
+                        //git credentialsId: GIT_CREDENTIALS_ID, url: GIT_REPO_URL
                         sh "git pull origin ${GIT_BRANCH}"
                         echo 'Successfully update source code'
                     } catch (Exception e) {
@@ -25,10 +26,10 @@ pipeline {
         stage('Preparation') {
             steps {
                 script {
-                    sh 'pwd'
-                    //run the install_components.sh script
-                    sh 'chmod 777 ./install-components.sh'
-                    sh 'sudo ./install-components.sh'
+                    // sh 'pwd'
+                    // //run the install_components.sh script
+                    // sh 'chmod 777 ./install-components.sh'
+                    // sh 'sudo ./install-components.sh'
                     echo 'Successfully install components'
                 }
             }
