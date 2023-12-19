@@ -15,7 +15,7 @@ pipeline {
                 script {
                     try {
                         //git credentialsId: GIT_CREDENTIALS_ID, url: GIT_REPO_URL
-                        sh "git pull origin ${GIT_BRANCH}"
+                        //sh "git pull origin ${GIT_BRANCH}"
                         echo 'Successfully update source code'
                     } catch (Exception e) {
                         error("Failed to update: ${e.message}")
